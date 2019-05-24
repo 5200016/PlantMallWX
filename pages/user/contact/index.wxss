@@ -1,0 +1,78 @@
+@import "../../../public/wxss/index.wxss";
+
+.contact_cont {
+    border-bottom: 1rpx solid #e5e5e5;
+    margin-bottom: 10rpx;
+    width: 100%;
+    float: left;
+    background: #fff;
+}
+
+.tel_cont {
+    display: flex;
+    float: left;
+    border-bottom: 1rpx solid #e5e5e5;
+    padding-left: 30rpx;
+    width: -webkit-calc(100% - 30rpx);
+    width: calc(100% - 30rpx);
+}
+
+.tel_l {
+    width: 160rpx;
+    font-size: 30rpx;
+    color: #010101;
+    line-height: 100rpx;
+    float: left;
+}
+
+.tel_r {
+    font-size: 30rpx;
+    color: #353535;
+    width: 80%;
+}
+
+.tel_r.teltwo {
+    width: 100%;
+}
+
+.tel_r .tel {
+    float: left;
+    border-bottom: 1rpx solid #e5e5e5;
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: right;
+}
+
+.tel_r .tel button {
+    width: 96rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    text-align: center;
+    border-radius: 5rpx;
+    border: 1rpx solid #79aeff;
+    color: #79aeff;
+    float: right;
+    font-size: 30rpx;
+    margin: 25rpx 30rpx 25rpx 25rpx;
+    padding: 0;
+}
+
+.tel_r .tel:last-child {
+    border-bottom: 0;
+}
+
+.email_cont {
+    float: left;
+    height: 100rpx;
+    line-height: 100rpx;
+    padding: 0 30rpx;
+    font-size: 30rpx;
+    color: #010101;
+    width: -webkit-calc(100% - 60rpx);
+    width: calc(100% - 60rpx);
+    border-bottom: 1rpx solid #e5e5e5;
+}
+
+.calling_btn{
+    float: right;
+}

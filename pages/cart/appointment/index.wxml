@@ -1,0 +1,46 @@
+<modal bindconfirm="modalConfirm" confirmText="确定" hidden="{{hiddenModal}}" noCancel="true" title="{{modaltitle}}"></modal>
+<view>
+    <view class="od_kai">
+        <view class="detail_top">
+            <view wx:if="{{haveAddress}}">
+                <navigator hoverClass="none" url="../../user/address/list/index?act=choose">
+                    <view class="choise_address">
+                        <view class="sh_name">{{addressInfo.name}}
+                            <text>{{addressInfo.phone}}</text>
+                        </view>
+                        <view class="sh_address">{{addressInfo.area}} {{addressInfo.address}}</view>
+                    </view>
+                </navigator>
+            </view>
+            <view wx:else>
+                <navigator hoverClass="none" url="../../user/address/list/index?act=choose">
+                    <view class="choise_address">
+                       <view class="choose-address-text">选择服务地址</view>
+                    </view>
+                    <view class="choise_btn">
+                        <image src="../../../static/image/more.png"></image>
+                    </view>
+                </navigator>
+            </view>
+        </view>
+        <view class="clear"></view>
+        <view class="or_wai">
+            <view class="plea_youhui" style="border-top:none">
+                <text style="width:150rpx;float:left">预约时间</text>
+                <picker class="time-picker" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}"><input value='{{time}}' placeholder='点击选择预约时间'/></picker>
+            </view>
+            <view class="liuyan">
+                <text>预约备注</text>
+                <input bindinput="bindKeyInput" class="txt_cont" cursorSpacing="20" maxlength="300" placeholder="点击填写留言"></input>
+            </view>
+        </view>
+    </view>
+    <view class="detail_bot">
+        <view class="he">点击确认完成预约</view>
+        <form bindsubmit="btnPay" reportSubmit="true">
+            <view class="pay">
+                <button formType="submit">确认预约</button>
+            </view>
+        </form>
+    </view>
+</view>

@@ -1,0 +1,73 @@
+<view>
+    <loading bindchange="loadingChange" hidden="{{hidden}}">加载中...</loading>
+</view>
+<form reportSubmit="report-submit">
+    <view scrollY class="bgwhite" style="height:{{scrollHeight}}px;overflow:hidden;">
+        <view class="tab-nav tab-nav2 flex">
+            <view class="search-box flex-extend">
+                <input bindinput="keyInput" placeholder="搜索"></input>
+            </view>
+            <view class="txt v-line  {{filter?'active':''}}" data-current="5">
+                <view bindtap="filterFunction" class="{{filter?'filter-active':'filter'}}">筛选</view>
+            </view>
+        </view>
+        <view class="content clearfix">
+
+            <!-- 商品分类 -->
+            <scroll-view scrollY class="classify fl" style="height:{{scrollHeight2}}px;">
+                <view class="cls-wrap" style="min-height:{{scrollHeight2}}px">
+                    <block wx:for="{{classifyList}}" wx:key="classifyList" wx:for-item="item">
+                        <view bindtap="clickClassify" class="cls-item flex {{item.selected?'active active2':''}}" data-id="{{item.id}}" data-type="{{item.type}}">
+                            <text class="flex-extend">{{item.name}}</text>
+                        </view>
+                    </block>
+                </view>
+            </scroll-view>
+
+            <!-- 商品 -->
+            <scroll-view bindscrolltolower="lower" class="pro-list fl" enableBackToTop="true" scrollY="true" style="height:{{scrollHeight2}}px">
+                <navigator class="pro-item" hoverClass="none" url="../detail/index?id={{item.id}}&classifyType={{classifyType}}" wx:for="{{productList}}" wx:key="productList" wx:for-item="item">
+                    <button class="but_ui flex" formType="submit">
+                        <image binderror="errImg" data-errorimg="{{index}}" src="{{url + item.image}}"></image>
+                        <view class="pro-desc flex-extend">
+                            <view class="pro-title">{{item.name}}</view>
+                            <text>已售 {{item.sale}} 件</text>
+                            <view class="price-add-image">
+                                <text class="pro-price" wx:if="{{classifyType === 0}}">{{item.price}} ￥</text>
+                                <text class="pro-price" wx:if="{{classifyType === 1}}">{{item.leasePrice}} ￥</text>
+                                <image catchtap="addShoppingCar" src="../../../static/image/plus.png" class="plus_btn" wx:if="{{item.classifyType == 1}}"></image>
+                            </view>
+                        </view>
+                    </button>
+                </navigator>
+            </scroll-view>
+
+            <!-- 筛选按钮 -->
+            <view class="modal" hidden="{{filterHidden}}">
+                <view bindtap="hideFilter" class="md-bg"></view>
+                <view class="md-content">
+                    <view class="type" style="border-bottom:1rpx solid #e5e5e5;">
+                        <view class="type-title">商品分类</view>
+                        <picker bindchange="bindPickerChange" value="{{index}}" range="{{classifyList}}" range-key='{{"name"}}' data-id='{{classifyList[index].id}}' data-type='{{classifyList[index].type}}'>
+                            <view class="picker">
+                                当前选择：{{classifyList[index].name}}
+                            </view>
+                        </picker>
+                    </view>
+                    <view class="hot">
+                        <view class="hot-title">热门排序</view>
+                        <view class="hot-list">
+                            <view class="item-wrap" wx:for="{{hotRank}}" wx:key="hotRank" wx:for-item="item">
+                                <view bindtap="chooseHotRank" class="hot-item {{item.selected?'yellow':''}}" data-id="{{item.id}}" data-name="{{item.name}}">{{item.name}}</view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="btn-wrap">
+                        <view bindtap="resetFilter">重置</view>
+                        <view bindtap="submitFilter" class="btn2">确定</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</form>

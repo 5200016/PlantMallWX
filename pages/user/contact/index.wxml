@@ -1,0 +1,19 @@
+<view>
+    <loading bindchange="loadingChange" hidden="{{hidden}}">加载中...</loading>
+</view>
+<view class="container">
+    <view class="top_bor"></view>
+    <view class="contact_cont">
+        <view class="tel_cont">
+            <view class="tel_l">客服电话：</view>
+            <view class="tel_r">
+                <view class="tel">
+                    <text>{{info.phone}}</text>
+                    <button bindtap="calling" data-phone="{{info.phone}}" plain="true" size="mini" type="default" class="calling_btn">拨打</button>
+                </view>
+            </view>
+        </view>
+        <view class="email_cont">客服邮箱：{{info.email}}</view>
+        <view class="email_cont">公司地址：{{info.address}}</view>
+    </view>
+</view>

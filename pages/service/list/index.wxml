@@ -1,0 +1,52 @@
+<view>
+    <loading bindchange="loadingChange" hidden="{{hidden}}">加载中...</loading>
+</view>
+<modal bindcancel="modalCancel" bindconfirm="modalConfirm" cancelText="{{modalCancelText}}" confirmText="{{modalConfirmText}}" data-act="{{modalAct}}" data-id="{{modalAppointmentId}}" hidden="{{hiddenModal}}" title="{{modalTitle}}"></modal>
+<scroll-view bindscrolltolower="lower" bindscrolltoupper="" scrollY="true" style="height:{{scrollHeight}}px;">
+    <view class="geall">
+        <scroll-view scrollX="true" style=" white-space: nowrap; height:84rpx">
+            <view bindtap="tabFunction" class="tab_menu">
+                <view class="{{currentTab=='0'?'active':''}}" data-current="0">未处理</view>
+                <view class="{{currentTab=='1'?'active':''}}" data-current="1">已处理</view>
+                <view class="{{currentTab=='2'?'active':''}}" data-current="2">已取消</view>
+            </view>
+        </scroll-view>
+    </view>
+    <view class="tab_cont">
+        <view class="right-item active">
+            <view wx:if="{{totalElements > 0}}">
+                <view class="order_cont" wx:for="{{appointmentList}}" wx:key="appointmentList" wx:for-item="item">
+                    <view class="title">
+                        <view class="tit">
+                            <view>手机号：{{item.phone}}</view>
+                            <view>预约时间：{{item.time}}</view>
+                            <view>地址：{{item.area}} {{item.address}}</view>
+                            <view>备注：{{item.remark}}</view>
+                        </view>
+                    </view>
+                    <view>
+                        <view wx:if="{{item.status === 0}}">
+                            <view bindtap="cancel_btn" class="btn cancel_btn" data-id="{{item.id}}">取消预约</view>
+                            <view bindtap="confirm_btn" class="btn confirm_btn" data-id="{{item.id}}">确认处理</view>
+                        </view>
+                        <view wx:if="{{item.status === 1}}">
+                            <view class="btn finish_btn" data-id="{{item.id}}">已处理</view>
+                        </view>
+                        <view wx:if="{{item.status === 2}}">
+                            <view class="btn finish_cancel_btn" data-id="{{item.id}}">已取消</view>
+                        </view>
+
+                    </view>
+                </view>
+                <view class="nodata_more" hidden="{{hiddenmore}}">没有更多啦～</view>
+            </view>
+            <view class="weui-loadmore weui-loadmore_line {{totalElements > 0 ? 'dn' : 'db'}}" wx:else>
+                <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+            </view>
+            <view bindchange="loadingChange" class="page_hd" hidden="{{hidden}}">
+                <view class="page_hd-loading"></view>
+                <view class="page_hd_tips">加载更多</view>
+            </view>
+        </view>
+    </view>
+</scroll-view>

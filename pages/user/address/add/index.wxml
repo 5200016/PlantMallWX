@@ -1,0 +1,37 @@
+<!--<view>-->
+    <!--<loading bindchange="loadingChange" hidden="{{hidden}}">加载中...</loading>-->
+<!--</view>-->
+<view class="container">
+    <view class="top_bor"></view>
+    <form bindsubmit="formSubmit">
+        <view class="address_cont">
+            <view class="cont">
+                <view class="txtl">收货人</view>
+                <view class="txtr">
+                    <input name="name" placeholder="请输入姓名" type="text"></input>
+                </view>
+            </view>
+            <view class="cont">
+                <view class="txtl">手机号</view>
+                <view class="txtr">
+                    <input maxlength="11" name="phone" placeholder="请输入手机号" type="number"></input>
+                </view>
+            </view>
+            <view class="cont">
+                <view class="txtl">地区</view>
+                <view class="txtr">
+                    <input maxlength="11" name="area" placeholder="例：江苏省 南京市 浦口区" type="text"></input>
+                </view>
+            </view>
+            <view class="cont">
+                <view class="txtl">详细地址</view>
+                <view class="txtr">
+                    <textarea name="address" placeholder="请输入详细地址"></textarea>
+                </view>
+            </view>
+        </view>
+        <view class="btn_area">
+            <button class="sub_btn" formType="submit" hoverClass="other-button-hover">保存</button>
+        </view>
+    </form>
+</view>

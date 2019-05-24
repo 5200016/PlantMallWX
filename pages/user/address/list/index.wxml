@@ -1,0 +1,41 @@
+<view>
+    <loading bindchange="loadingChange" hidden="{{hidden}}">加载中...</loading>
+</view>
+<import src="../../../../utils/wetoast/wetoast.wxml"></import>
+<template is="wetoast" data="{{...__wetoast__}}"></template>
+<view class="container">
+    <view class="top_bor"></view>
+    <scroll-view bindscrolltolower="lower" bindscrolltoupper="" scrollY="true" style="height:{{scrollHeight}}px;">
+        <view class="address_container" wx:if="{{totalElements > 0}}">
+            <radio-group bindchange="radioChange" class="radio-group">
+                <view class="address_cont" wx:for="{{addressList}}" wx:key="addressList" wx:for-item="item">
+                    <view class="cont">
+                        <view bindtap="choseAddress" class="address" data-id="{{item.id}}" wx:if="{{showType == 2}}">
+                            <view class="title">收货人：{{item.name}} <span>{{item.phone}}</span>
+                            </view>
+                            <view class="txt">收货地址：{{item.area}}</view>
+                        </view>
+                        <view class="address" wx:else>
+                            <view class="title">收货人：{{item.name}} <span>{{item.phone}}</span>
+                            </view>
+                            <view class="txt">收货地址：{{item.area}}</view>
+                        </view>
+                        <navigator class="edit_btn" hoverClass="none" openType="redirect" url="../edit/index?id={{item.id}}">编辑</navigator>
+                    </view>
+                    <view class="cont_bot">
+                        <label>
+                            <radio checked="{{item.status > 0 ? true : false}}" class="radio" color="orange" value="{{item.id}}"></radio>设置为默认地址
+                        </label>
+                    </view>
+                </view>
+            </radio-group>
+        </view>
+        <view class="weui-loadmore weui-loadmore_line" wx:else>
+            <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+        </view>
+    </scroll-view>
+    <navigator class="add_address" hoverClass="none" openType="redirect" url="../add/index">
+        <image src="../../../../static/image/add_btn.png"></image>
+        <text>添加新地址</text>
+    </navigator>
+</view>

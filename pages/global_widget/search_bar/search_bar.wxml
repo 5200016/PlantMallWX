@@ -1,0 +1,8 @@
+<view bindtap="toSearchPage" class="search_wrapper">
+    <view class="search_text">
+        <image class="search_icon" src="../../../static/image/search_icon.png"></image>
+        <!-- <icon class></icon> -->
+        <text>搜索商品</text>
+
+    </view>
+</view>

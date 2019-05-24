@@ -1,0 +1,43 @@
+{
+    "extEnable": true,
+    "extAppid": "wx876b17cfbdcad9f3",
+    "ext": {
+        "appid": "wx876b17cfbdcad9f3",
+        "tabBar": {
+            "color": "#353535",
+            "selectedColor": "#353535",
+            "borderStyle": "#00f",
+            "backgroundColor": "#fff",
+            "list": [
+                {
+                    "pagePath": "pages/home/index",
+                    "text": "首页",
+                    "iconPath": "static/image/tabbar/home.png",
+                    "selectedIconPath": "static/image/tabbar/home_select.png"
+                },
+                {
+                    "pagePath": "pages/home/index",
+                    "text": "精选商品",
+                    "iconPath": "static/image/tabbar/product.png",
+                    "selectedIconPath": "static/image/tabbar/product_select.png"
+                },
+                {
+                    "pagePath": "pages/home/index",
+                    "text": "购物车",
+                    "iconPath": "static/image/tabbar/shopping.png",
+                    "selectedIconPath": "static/image/tabbar/shopping_select.png"
+                },
+                {
+                    "pagePath": "pages/user/index",
+                    "text": "我的",
+                    "iconPath": "static/image/tabbar/user.png",
+                    "selectedIconPath": "static/image/tabbar/user_select.png"
+                }
+            ]
+        },
+        "nav_appid": "",
+        "producttypesetting": 2,
+        "diymodel_id": 0,
+        "shoplisttypesetting": 2
+    }
+}

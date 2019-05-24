@@ -1,0 +1,242 @@
+@import "../../public/wxss/index.wxss";
+
+.p_container {
+    padding-bottom: 100rpx;
+}
+
+.user_top {
+    width: 100%;
+    height: 260rpx;
+    text-align: center;
+    background: #fff;
+    border-bottom: 1rpx solid #e5e5e5;
+    margin-bottom: 20rpx;
+    padding-top: 30rpx;
+}
+
+.jisore {
+    font-size: 22rpx;
+    height: 30rpx;
+    line-height: 30rpx;
+    margin: 0 auto;
+    color: #888;
+}
+
+.user_top image.integral_img {
+    width: 20rpx;
+    height: 16rpx;
+    margin-right: 10rpx;
+    border-radius: 0;
+}
+
+.user_top image {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50rpx;
+}
+
+.user_top text {
+    font-size: 34rpx;
+    color: #000;
+    margin: 10rpx 0 15rpx 0;
+    display: block;
+}
+
+.user_top .login_button {
+    font-size: 34rpx;
+    color: #888;
+    margin-top: 10rpx;
+
+}
+
+.login_button{
+    line-height: 50rpx!important;
+    background-color: #FFF;
+}
+
+.myorder {
+    border-bottom: 1rpx solid #e5e5e5;
+    border-top: 1rpx solid #e5e5e5;
+    background: #fff;
+    width: 100%;
+}
+
+.myorder .listli {
+    height: 100rpx;
+    margin-left: 30rpx;
+    border-bottom: 1rpx solid #e5e5e5;
+    line-height: 100rpx;
+    padding-right: 30rpx;
+    font-size: 34rpx;
+    color: #000;
+}
+
+.myorder .listli image {
+    width: 32rpx;
+    height: 32rpx;
+    margin-top: 34rpx;
+    margin-right: 15rpx;
+    float: left;
+}
+
+.myorder .listli span {
+    float: right;
+    margin-top: 5rpx;
+}
+
+.myorder .listli span image {
+    width: 12rpx;
+    height: 24rpx;
+}
+
+.myorder .cont {
+    display: flex;
+    width: 100%;
+    padding: 30rpx 0 35rpx 0;
+}
+
+.myorder .cont .navigator {
+    width: 20%;
+    text-align: center;
+}
+
+.myorder .cont .navigator image {
+    width: 58rpx;
+    height: 58rpx;
+}
+
+.myorder .cont .navigator text {
+    font-size: 24rpx;
+    color: #000;
+    display: block;
+    margin-top: 5rpx;
+}
+
+.manage_cont {
+    border-bottom: 1rpx solid #e5e5e5;
+    border-top: 1rpx solid #e5e5e5;
+    background: #fff;
+    width: 100%;
+    margin-top: 20rpx;
+}
+
+.manage_cont .listli {
+    height: 100rpx;
+    margin-left: 30rpx;
+    border-bottom: 1rpx solid #e5e5e5;
+    line-height: 100rpx;
+    padding-right: 30rpx;
+    font-size: 30rpx;
+    color: #000;
+}
+
+.manage_cont .listli span {
+    float: right;
+    margin-top: 5rpx;
+}
+
+.manage_cont .listli span image {
+    width: 12rpx;
+    height: 24rpx;
+}
+
+.manage_cont .listli image {
+    width: 32rpx;
+    height: 32rpx;
+    margin-top: 34rpx;
+    margin-right: 15rpx;
+    float: left;
+}
+
+.manage_cont .listli:last-child {
+    border-bottom: 0;
+}
+
+.manage_cont .listli text {
+    font-size: 22rpx;
+    color: #888;
+    margin-right: 10rpx;
+    float: right;
+}
+
+.space {
+    height: 150rpx;
+}
+
+.shit.manage_cont {
+    margin-bottom: 60rpx;
+}
+
+button.but_ui {
+    position: inherit;
+    width: 100%;
+    height: 100%;
+    display: block;
+    font-size: 30rpx;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;
+    text-align: left;
+    text-decoration: none;
+    border-radius: 0;
+    line-height: 100rpx;
+    -webkit-tap-highlight-color: transparent;
+    overflow: hidden;
+    color: #000000;
+    background-color: #fff;
+}
+
+button.but_ui::after {
+    content: " ";
+    height: 0;
+    border: none;
+    border-radius: 0;
+}
+
+button.but_t {
+    text-align: center;
+    line-height: 1;
+    background-color: #fff;
+    overflow: visible;
+    padding-left: 0rpx !important;
+    padding-right: 0rpx !important;
+}
+
+button.but_t::after {
+    border: none;
+    border-radius: 0;
+}
+
+.navigator .count {
+    position: absolute;
+    right: 28rpx;
+    top: -10rpx;
+    font-size: 22rpx;
+    color: #fff;
+    background: rgba(255,0,0,0.7);
+    text-align: center;
+    height: 30rpx;
+    line-height: 30rpx;
+    border-radius: 15rpx;
+    min-width: 30rpx;
+}
+
+.bind-tel {
+    display: inline;
+    padding-left: 10rpx;
+    color: #4188f0;
+    font-size: 22rpx;
+    background: transparent;
+}
+
+.tel-wrap {
+    display: inline;
+    padding-left: 10px;
+}
+
+.tel-wrap view {
+    display: inline;
+    color: #4188f0;
+}

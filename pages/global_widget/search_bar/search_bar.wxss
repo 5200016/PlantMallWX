@@ -1,0 +1,29 @@
+.search_wrapper {
+    height: 100rpx;
+    position: relative;
+    background: #fff;
+}
+
+.search_text {
+    width: 96%;
+    height: 80rpx;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -40rpx 0 0 -48%;
+    background: #f7f7f7;
+    border-radius: 10rem;
+    text-align: center;
+    line-height: 70rpx;
+    color: #B2B2B2;
+    font-size: 28rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search_icon {
+    width: 28rpx;
+    height: 28rpx;
+    margin-right: 12rpx;
+}

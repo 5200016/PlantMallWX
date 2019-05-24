@@ -1,0 +1,152 @@
+<view>
+    <loading bindchange="loadingChange" hidden="{{hidden}}">加载中...</loading>
+</view>
+<import src="../../utils/wetoast/wetoast.wxml"></import>
+<template is="wetoast" data="{{...__wetoast__}}"></template>
+<view>
+    <form bindsubmit="formsubmit" reportSubmit="report-submit">
+        <view class="p_container">
+            <view class="user_top">
+
+                <!-- 未登录时显示 -->
+                <block wx:if="{{hasUserInfo === false}}">
+                    <button class="login_button" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+                        <image backgroundSize="cover" class="userinfo-avatar"
+                               src="../../static/image/user/user_avatar.png"></image>
+                        <view class="login_btn">未登录</view>
+                    </button>
+                </block>
+
+                <!-- 已完成用户信息绑定时显示 -->
+                <block wx:if="{{hasUserInfo === true}}">
+                    <image backgroundSize="cover" class="userinfo-avatar" src="{{userInfo.avatar}}"></image>
+                    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+                    <view class="jisore">
+                        <image class="integral_img" src="../../static/image/user/integral.png"></image>
+                        {{score}} 积分
+                        <view class="tel-wrap" wx:if="{{hasPhone}}">手机号: {{userInfo.phone}}</view>
+                        <button bindgetphonenumber="bindPhoneNumber" class="bind-tel" openType="getPhoneNumber"
+                                wx:if="{{!hasPhone}}">手机号绑定>
+                        </button>
+                    </view>
+                </block>
+            </view>
+            <view class="myorder">
+                <view bindtap="jumpTo" class="listli" data-url="../user/order/list/index">
+                    <button class="but_ui">
+                        <image src="../../static/image/order/order.png"></image>
+                        我的订单
+                        <span>
+                            <image src="../../static/image/more.png"></image>
+                        </span>
+                    </button>
+                </view>
+                <view class="cont">
+                    <view bindtap="jumpTo" class="navigator" data-url="../user/order/list/index?status=1">
+                        <button class="but_t" formType="submit">
+                            <view class="count" wx:if="{{count_1}}">{{count_1}}</view>
+                            <image src="../../static/image/order/wait_pay.png"></image>
+                            <text>待付款</text>
+                        </button>
+                    </view>
+                    <view bindtap="jumpTo" class="navigator" data-url="../user/order/list/index?status=2">
+                        <button class="but_t" formType="submit">
+                            <view class="count" wx:if="{{count_2}}">{{count_2}}</view>
+                            <image src="../../static/image/order/wait_send.png"></image>
+                            <text>待发货</text>
+                        </button>
+                    </view>
+                    <view bindtap="jumpTo" class="navigator" data-url="../user/order/list/index?status=3">
+                        <button class="but_t" formType="submit">
+                            <view class="count" wx:if="{{count_3}}">{{count_3}}</view>
+                            <image src="../../static/image/order/wait_receive.png"></image>
+                            <text>待收货</text>
+                        </button>
+                    </view>
+                    <view bindtap="jumpTo" class="navigator" data-url="../user/order/list/index?status=4">
+                        <button class="but_t" formType="submit">
+                            <view class="count" wx:if="{{count_4}}">{{count_4}}</view>
+                            <image src="../../static/image/order/wait_review.png"></image>
+                            <text>待评价</text>
+                        </button>
+                    </view>
+                    <view bindtap="jumpTo" class="navigator" data-url="../user/order/list/index?status=5">
+                        <button class="but_t" formType="submit">
+                            <view class="count" wx:if="{{count_5}}">{{count_5}}</view>
+                            <image src="../../static/image/order/wait_pay_out.png"></image>
+                            <text>售后/退款</text>
+                        </button>
+                    </view>
+                </view>
+            </view>
+            <view class="manage_cont">
+                <view bindtap="jumpTo" class="listli" data-url="../user/plant_service/index">
+                    <button class="but_ui" formType="submit">
+                        <image src="../../static/image/function/plant_service.png"></image>
+                        绿植养护
+                        <span>
+                            <image src="../../static/image/more.png"></image>
+                        </span>
+                    </button>
+                </view>
+                <view bindtap="jumpTo" class="listli" data-url="../service/list/index">
+                    <button class="but_ui" formType="submit">
+                        <image src="../../static/image/function/appointment.png"></image>
+                        我的预约
+                        <span>
+                            <image src="../../static/image/more.png"></image>
+                        </span>
+                    </button>
+                </view>
+                <view bindtap="jumpTo" class="listli" data-url="../user/collection/index">
+                    <button class="but_ui" formType="submit">
+                        <image src="../../static/image/function/collection.png"></image>
+                        我的收藏
+                        <span>
+                            <image src="../../static/image/more.png"></image>
+                        </span>
+                    </button>
+                </view>
+                <view bindtap="jumpTo" class="listli" data-url="../user/coupon/index">
+                    <button class="but_ui" formType="submit">
+                        <image src="../../static/image/function/coupon.png"></image>
+                        优惠券
+                        <span>
+                            <image src="../../static/image/more.png"></image>
+                        </span>
+                    </button>
+                </view>
+                <view bindtap="jumpTo" class="listli" data-url="../user/address/list/index">
+                    <button class="but_ui" formType="submit">
+                        <image src="../../static/image/function/address.png"></image>
+                        地址管理
+                        <span>
+                            <image src="../../static/image/more.png"></image>
+                        </span>
+                    </button>
+                </view>
+                <view bindtap="jumpTo" class="listli" data-url="../card/list/index" wx:if="{{false}}">
+                    <button class="but_ui" formType="submit">
+                        <image src="../../static/image/function/card.png"></image>
+                        我的会员卡
+                        <span>
+                            <image src="../../static/image/more.png"></image>
+                        </span>
+                    </button>
+                </view>
+                <view bindtap="jumpTo" class="listli" data-url="../user/contact/index">
+                    <button class="but_ui" formType="submit">
+                        <image src="../../static/image/function/contact.png"></image>
+                        联系我们
+                        <span>
+                            <image src="../../static/image/more.png"></image>
+                        </span>
+                    </button>
+                </view>
+            </view>
+        </view>
+    </form>
+</view>
+<view>
+    <loading hidden="{{createing}}">生成中...</loading>
+</view>

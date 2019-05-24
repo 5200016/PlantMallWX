@@ -1,0 +1,164 @@
+<view>
+    <loading bindchange="loadingChange" hidden="{{hidden}}">加载中...</loading>
+</view>
+
+<modal bindconfirm="modalConfirm" confirmText="确定" hidden="{{hiddenModal}}" noCancel="true"
+       title="{{modaltitle}}"></modal>
+
+<!-- 立即购买或立即租赁 -->
+<view wx:if="{{buyType == 'buy'}}">
+    <view class="container">
+        <view class="detail_top">
+            <view wx:if="{{haveAddress}}">
+                <navigator hoverClass="none" url="../../user/address/list/index?act=choose">
+                    <view class="choose_address">
+                        <view class="sh_name">{{addressInfo.name}}
+                            <text>{{addressInfo.phone}}</text>
+                        </view>
+                        <view class="sh_address">{{addressInfo.area}} {{addressInfo.address}}</view>
+                    </view>
+                    <view class="choose_btn">
+                        <image src="../../../static/image/more.png"></image>
+                    </view>
+                </navigator>
+            </view>
+            <view wx:else>
+                <navigator hoverClass="none" url="../../user/address/list/index?act=choose">
+                    <view class="choose_address">
+                        <span>
+                            <i>*</i>
+                            选择地址
+                        </span>
+                    </view>
+                    <view class="choose_btn">
+                        <image src="../../../static/image/more.png"></image>
+                    </view>
+                </navigator>
+            </view>
+        </view>
+
+        <!-- 租赁商品订单 -->
+        <view class="order_cont" wx:if="{{orderPayList.lease.productInfo.length > 0}}">
+            <view class="cont_t" wx:for="{{orderPayList.lease.productInfo}}" wx:key="productInfo" wx:for-item="productItem">
+                <image binderror="imageErrImg" src="{{url}}{{productItem.image}}"></image>
+                <view class="con">
+                    <view class="tit">{{productItem.name}}</view>
+                    <view class="txt">库存：{{productItem.inventory}} 件</view>
+                    <view class="price">{{productItem.leasePrice}} ￥
+                        <text>×{{productItem.number}}</text>
+                    </view>
+                </view>
+                <view class="clear"></view>
+            </view>
+            <view class="clear"></view>
+
+            <!-- 使用积分 -->
+            <view class="dil_xx" wx:if="{{nonSeckill&&(info.promotion_price>0||info.promotion_score>0)}}">
+                <view class="tbt">
+                    <icon bindtap="clickpIcon" class="shop_check" color="{{!hava_orno?'':'orange'}}" data-sid="{{sid}}"
+                          size="20" type="{{!hava_orno?'circle':'success'}}"></icon>
+                    <text bindtap="clickpIcon">使用兑换价</text>
+                </view>
+                <view class="tat">￥{{promotion_price}}+{{promotion_score}}
+                    <text>积分</text>
+                </view>
+                <view class="clear"></view>
+            </view>
+
+            <view class="detail_xx">
+                <view class="txt">配送方式
+                    <text>快递 免邮</text>
+                </view>
+            </view>
+            <view class="clear"></view>
+
+            <view bindtap="setModalStatus" class="plea_youhui" data-status="1">
+                <text>选择优惠券</text>
+                <view class="coupon">{{singleCoupon}}</view>
+                <view class="choose_btn">
+                    <image src="../../../static/image/more.png"></image>
+                </view>
+            </view>
+
+            <view class="liuyan">
+                <text>留言</text>
+                <input bindinput="bindKeyInput" class="txt_cont" cursorSpacing="20" data-sid="{{info.shop_id}}"
+                       maxlength="300" placeholder="点击填写留言"></input>
+            </view>
+
+            <view class="line"></view>
+            <view class="groupSum">{{orderPayList.lease.number}}件商品 小计：
+                <text wx:if="{{hava_orno}}">¥{{totalPromPrice}}+{{totalPromScore}}积分</text>
+                <text wx:else>¥{{orderPayList.lease.totalPrice}}</text>
+            </view>
+        </view>
+
+        <!-- 出售商品订单 -->
+        <view class="order_cont" wx:if="{{orderPayList.sell.length > 0}}" wx:for="{{orderPayList.sell}}" wx:key="sell" wx:for-item="sellItem">
+            <view class="cont_t">
+                <image binderror="imageErrImg" src="{{url}}{{sellItem.productInfo.image}}"></image>
+                <view class="con">
+                    <view class="tit">{{sellItem.productInfo.name}}</view>
+                    <view class="txt">库存：{{sellItem.productInfo.inventory}} 件</view>
+                    <view class="price">{{sellItem.productInfo.price}} ￥
+                        <text>×{{sellItem.number}}</text>
+                    </view>
+                </view>
+                <view class="clear"></view>
+            </view>
+            <view class="clear"></view>
+
+            <!-- 使用积分 -->
+            <view class="dil_xx" wx:if="{{nonSeckill&&(info.promotion_price>0||info.promotion_score>0)}}">
+                <view class="tbt">
+                    <icon bindtap="clickpIcon" class="shop_check" color="{{!hava_orno?'':'orange'}}" data-sid="{{sid}}"
+                          size="20" type="{{!hava_orno?'circle':'success'}}"></icon>
+                    <text bindtap="clickpIcon">使用兑换价</text>
+                </view>
+                <view class="tat">￥{{promotion_price}}+{{promotion_score}}
+                    <text>积分</text>
+                </view>
+                <view class="clear"></view>
+            </view>
+
+            <view class="detail_xx">
+                <view class="txt">配送方式
+                    <text>快递 免邮</text>
+                </view>
+            </view>
+            <view class="clear"></view>
+
+            <view bindtap="setModalStatus" class="plea_youhui" data-status="1">
+                <text>选择优惠券</text>
+                <view class="coupon">{{singleCoupon}}</view>
+                <view class="choose_btn">
+                    <image src="../../../static/image/more.png"></image>
+                </view>
+            </view>
+
+            <view class="liuyan">
+                <text>留言</text>
+                <input bindinput="bindKeyInput" class="txt_cont" cursorSpacing="20" data-sid="{{info.shop_id}}"
+                       maxlength="300" placeholder="点击填写留言"></input>
+            </view>
+
+            <view class="line"></view>
+            <view class="groupSum">{{sellItem.number}}件商品 小计：
+                <text wx:if="{{hava_orno}}">¥{{totalPromPrice}}+{{totalPromScore}}积分</text>
+                <text wx:else>¥{{sellItem.totalPrice}}</text>
+            </view>
+        </view>
+
+    </view>
+    <view class="detail_bot">
+        <view class="he"> 合计：
+            <text wx:if="{{hava_orno}}">¥{{totalPromPrice}}+{{totalPromScore}}积分</text>
+            <text wx:else>¥{{payPrice}}</text>
+        </view>
+        <form bindsubmit="btnPay" reportSubmit="true">
+            <view class="pay">
+                <button formType="submit">支付</button>
+            </view>
+        </form>
+    </view>
+</view>

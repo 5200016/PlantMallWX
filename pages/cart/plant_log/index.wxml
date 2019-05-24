@@ -1,0 +1,27 @@
+<view>
+    <loading bindchange="loadingChange" hidden="{{hidden}}">加载中...</loading>
+</view>
+<form bindsubmit="formsubmit" reportSubmit="report-submit">
+    <scroll-view bindscrolltolower="lower" enableBackToTop="true" scrollY="true" style="height:{{scrollHeight}}px;">
+        <image class="module-image" binderror="errImg"  mode="scaleToFill" src="{{url}}{{plantLogModule.image}}"></image>
+        <view class="m_prolist_cont">
+            <view wx:if="{{totalElements > 0}}">
+                <view class="venues_item flex_auto" wx:for="{{plantLogList}}">
+                    <navigator hoverClass="none" url="../group/index?id={{item.id}}">
+                        <button class="but_ui" formType="submit">
+                            <view class="expire-wrap">
+                                <image binderror="errImg" data-errorimg="{{index}}" mode="scaleToFill" src="{{url}}{{item.image}}"></image>
+                            </view>
+                            <text class="title">{{item.name}}</text>
+                        </button>
+                    </navigator>
+                </view>
+                <view class="nodata_more" hidden="{{hiddenmore}}">没有更多啦～</view>
+            </view>
+            <view bindchange="loadingChange" class="page_hd" hidden="{{hidden}}">
+                <view class="page_hd-loading"></view>
+                <view class="page_hd_tips">加载更多</view>
+            </view>
+        </view>
+    </scroll-view>
+</form>
