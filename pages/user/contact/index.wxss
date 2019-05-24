@@ -18,7 +18,7 @@
 }
 
 .tel_l {
-    width: 160rpx;
+    width: 152rpx;
     font-size: 30rpx;
     color: #010101;
     line-height: 100rpx;
@@ -59,6 +59,11 @@
 
 .tel_r .tel:last-child {
     border-bottom: 0;
+}
+
+.content{
+    display: inline;
+    margin-left: 8rpx;
 }
 
 .email_cont {

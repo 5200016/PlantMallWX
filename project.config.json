@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -108,6 +108,13 @@
 					"id": -1,
 					"name": "绿植养护",
 					"pathName": "pages/user/plant_service/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "养护计划",
+					"pathName": "pages/user/plant_service/detail/index",
 					"scene": null
 				}
 			]

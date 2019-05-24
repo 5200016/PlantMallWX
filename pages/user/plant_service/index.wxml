@@ -25,7 +25,7 @@
                             </view>
                             <view wx:if="{{item.maintenancePlanStatus == 1}}">
                                 <navigator class="btn yellow" hoverClass="none"
-                                           url="../comment/index?orderId={{item.id}}">查看养护计划
+                                           url="../plant_service/detail/index?id={{item.id}}">查看养护计划
                                 </navigator>
                             </view>
                         </view>

@@ -91,8 +91,8 @@ App({
 
     globalData: {
         // 服务器域名
-        // HOST: 'http://47.100.4.198:8081',
-        HOST: 'http://localhost:8081',
+        HOST: 'http://47.100.4.198:8081',
+        // HOST: 'http://localhost:8081',
 
         // 全局请求URL
         URL: '/mall/wx',
