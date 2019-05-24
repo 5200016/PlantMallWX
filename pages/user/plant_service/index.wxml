@@ -1,2 +1,45 @@
-<!--pages/user/plant_service/index.wxml-->
-<text>pages/user/plant_service/index.wxml</text>
+<view>
+    <loading bindchange="loadingChange" hidden="{{hidden}}">加载中...</loading>
+</view>
+<scroll-view bindscrolltolower="lower" bindscrolltoupper="" scrollY="true" style="height:{{scrollHeight}}px;">
+    <view class="tab_cont">
+        <view class="right-item active">
+            <view wx:if="{{totalElements > 0}}">
+                <view class="order_cont" wx:for="{{orderServiceList}}" wx:key="orderServiceList" wx:for-item="item">
+                    <view>
+                        <view class="title">
+                            <view class="tit">联系人：{{item.receiverAddress.name}}</view>
+                            <text>手机号：{{item.receiverAddress.phone}}</text>
+                        </view>
+                        <scroll-view scrollX class="hk-product">
+                            <view class="hk-product-item" hoverClass="none" wx:for="{{item.orderProducts}}" wx:key="orderProducts" wx:for-index="productIndex" wx:for-item="orderProduct">
+                                <view>
+                                    <image src="{{url}}{{orderProduct.product.image}}"></image>
+                                    <view class="hk-item-title">{{orderProduct.product.name}} * {{orderProduct.productNumber}}</view>
+                                </view>
+                            </view>
+                        </scroll-view>
+                        <view class="con_b">
+                            <view wx:if="{{item.maintenancePlanStatus == 0}}">
+                                <view class="btn remind_btn">等待商家设置养护计划</view>
+                            </view>
+                            <view wx:if="{{item.maintenancePlanStatus == 1}}">
+                                <navigator class="btn yellow" hoverClass="none"
+                                           url="../comment/index?orderId={{item.id}}">查看养护计划
+                                </navigator>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="nodata_more" hidden="{{hiddenMore}}">没有更多啦～</view>
+            </view>
+            <view class="weui-loadmore weui-loadmore_line {{totalElements > 0 ? 'dn' : 'db'}}" wx:else>
+                <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+            </view>
+            <view bindchange="loadingChange" class="page_hd" hidden="{{hidden}}">
+                <view class="page_hd-loading"></view>
+                <view class="page_hd_tips">加载更多</view>
+            </view>
+        </view>
+    </view>
+</scroll-view>

@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 8,
+			"current": 9,
 			"list": [
 				{
 					"id": -1,
@@ -101,6 +101,13 @@
 					"id": -1,
 					"name": "植物志",
 					"pathName": "pages/cart/plant_log/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "绿植养护",
+					"pathName": "pages/user/plant_service/index",
 					"scene": null
 				}
 			]
