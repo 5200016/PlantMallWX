@@ -15,7 +15,8 @@
     "pages/user/order/list/index",
     "pages/user/plant_service/index",
     "pages/cart/plant_log/index",
-    "pages/user/plant_service/detail/index"
+    "pages/user/plant_service/detail/index",
+    "pages/cart/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -42,7 +43,7 @@
         "selectedIconPath": "static/image/tabbar/product_select.png"
       },
       {
-        "pagePath": "pages/home/index",
+        "pagePath": "pages/cart/index",
         "text": "购物车",
         "iconPath": "static/image/tabbar/shopping.png",
         "selectedIconPath": "static/image/tabbar/shopping_select.png"

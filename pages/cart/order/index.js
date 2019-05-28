@@ -1,11 +1,5 @@
-function isEmpty(value){
-    if(value !== null && value !== "" && value !== undefined){
-        return false
-    }
-    return true;
-}
-
 const app = getApp();
+const util = require("../../../utils/util.js");
 Page({
 
     /**
@@ -121,9 +115,10 @@ Page({
         let data = {
             sell: this.data.orderPayList.sell,
             lease: this.data.orderPayList.lease,
+            shoppingProductIdList: this.data.orderPayList.shoppingProductIdList,
             payNo: payNO,
             userId: wx.getStorageSync("userId"),
-            receiveAddressId: this.data.addressId
+            receiveAddressId: this.data.addressId,
         };
         app.wxRequest('POST', url, data, (res) => {
             if (res.result) {
@@ -163,11 +158,11 @@ Page({
             payPrice: leaseTotalPrice + sellTotalPrice
         });
 
-        if(!isEmpty(options.addressId)){
+        if(!util.isEmpty(options.addressId)){
             this.getAddressById(options.addressId);
         }
 
-        if(!isEmpty(this.data.orderPayList.productId)){
+        if(!util.isEmpty(this.data.orderPayList.productId)){
             this.getProductById(this.data.orderPayList.productId);
         }
 

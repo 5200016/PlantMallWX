@@ -154,14 +154,14 @@ Page({
             classifyType = this.data.classifyType;
         // 购物车数据模板
         let data = {
-            sell: [
-            ],
+            sell: [],
             lease: {
                 productList: [],
                 productInfo: [],
                 classifyType: 1,
                 totalPrice: 0,
-            }
+            },
+            shoppingProductIdList: []
         };
 
         switch (classifyType) {

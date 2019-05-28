@@ -1,0 +1,87 @@
+<view>
+    <loading bindchange="loadingChange" hidden="{{hidden}}">加载中...</loading>
+</view>
+<modal bindcancel="modalCancel" bindconfirm="modalConfirm" cancelText="{{modalCancelText}}"
+       confirmText="{{modalConfirmText}}" data-act="{{modalAct}}" data-id="{{modalShoppingProductId}}"
+       hidden="{{hiddenModal}}" title="{{modalTitle}}"></modal>
+<view class="container">
+    <view class="top_bor"></view>
+    <view class="wdb" wx:if="{{totalElements > 0}}">
+        <view class="cart_cont" wx:for="{{shoppingCarList}}" wx:key="shoppingCar" wx:for-index="shoppingCarIndex" wx:for-item="item">
+            <view class="title">
+                <icon bindtap="chooseProductList"
+                      data-shopping-car-index="{{shoppingCarIndex}}"
+                      data-shopping-car-id="{{item.id}}"
+                      data-type="{{item.type}}"
+                      class="shop_check"
+                      color="orange"
+                      size="20"
+                      type="{{item.selected ? 'success' : 'circle'}}"></icon>
+                <image src="../../static/image/product.png"></image>
+                <view class="tit" wx:if="{{item.type == 0}}">出售商品</view>
+                <view class="tit" wx:if="{{item.type == 1}}">租赁商品</view>
+            </view>
+            <view class="cont_t" wx:for="{{item.shoppingProducts}}" wx:key="shoppingProducts" wx:for-index="shoppingProductsIndex" wx:for-item="shoppingProducts" >
+                <icon bindtap="chooseProduct"
+                      class="my-check"
+                      color="orange"
+                      data-product-id="{{shoppingProducts.id}}"
+                      data-product-index="{{shoppingProductsIndex}}"
+                      data-product-type="{{shoppingProducts.productType}}"
+                      data-product-sell="{{shoppingProducts.product.price}}"
+                      data-product-lease="{{shoppingProducts.product.leasePrice}}"
+                      data-product-number="{{shoppingProducts.productNumber}}"
+                      data-car-id="{{item.id}}"
+                      data-car-index="{{shoppingCarIndex}}"
+                      size="20"
+                      type="{{shoppingProducts.selected == true ? 'success' : 'circle'}}"></icon>
+                <image src="{{url}}{{shoppingProducts.product.image}}"></image>
+                <view class="con">
+                    <view class="tit" >{{shoppingProducts.product.name}}</view>
+                    <view class="dbflex">
+                        <view class="price" wx:if="{{shoppingProducts.productType == 0}}">¥ {{shoppingProducts.product.price}}</view>
+                        <view class="price" wx:if="{{shoppingProducts.productType == 1}}">¥ {{shoppingProducts.product.leasePrice}}</view>
+                        <view class="sum_cont">
+                            <image bindtap="bindMinus"
+                                   data-product-id="{{shoppingProducts.id}}"
+                                   data-product-index="{{shoppingProductsIndex}}"
+                                   data-product-type="{{shoppingProducts.productType}}"
+                                   data-product-sell="{{shoppingProducts.product.price}}"
+                                   data-product-lease="{{shoppingProducts.product.leasePrice}}"
+                                   data-product-number="{{shoppingProducts.productNumber}}"
+                                   data-car-id="{{item.id}}"
+                                   data-car-index="{{shoppingCarIndex}}"
+                                   src="../../static/image/minus.png"></image>
+                            <input disabled="true" class="int" type="number" value="{{shoppingProducts.productNumber}}"/>
+                            <image bindtap="bindPlus"
+                                   data-product-id="{{shoppingProducts.id}}"
+                                   data-product-index="{{shoppingProductsIndex}}"
+                                   data-product-type="{{shoppingProducts.productType}}"
+                                   data-product-sell="{{shoppingProducts.product.price}}"
+                                   data-product-lease="{{shoppingProducts.product.leasePrice}}"
+                                   data-product-number="{{shoppingProducts.productNumber}}"
+                                   data-car-id="{{item.id}}"
+                                   data-car-index="{{shoppingCarIndex}}"
+                                   src="../../static/image/plus.png"></image>
+                        </view>
+                    </view>
+                </view>
+                <view bindtap="delProdcut" class="del_cont" data-cid="{{pInfo.cid}}" data-pid="{{pInfo.id}}" wx:if="{{actname[sid]=='完成'}}">删除</view>
+            </view>
+        </view>
+        <view class="cart_bot">
+            <view bindtap="clickallIcon" class="checkall">
+                <icon class="l-mycheck" color="{{iconAllChosed?'orange':''}}" size="20" type="{{iconAllChosed?'success':'circle'}}"></icon>
+                <text>全选</text>
+            </view>
+            <view class="allsum">
+                <view class="my-count" data="{{sep}}">合计：<text>¥{{totalPrice}}</text>
+                </view>
+            </view>
+            <view bindtap="payment" class="paybtn">结算(<text>{{totalNumber}}</text>)</view>
+        </view>
+    </view>
+    <view class="weui-loadmore weui-loadmore_line db" wx:else>
+        <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+    </view>
+</view>

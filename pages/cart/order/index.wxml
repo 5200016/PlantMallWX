@@ -23,7 +23,7 @@
                 </navigator>
             </view>
             <view wx:else>
-                <navigator hoverClass="none" url="../../user/address/list/index?act=choose">
+                <navigator hoverClass="none" url="../../user/address/list/index?act=choose&origin={{origin}}">
                     <view class="choose_address">
                         <span>
                             <i>*</i>

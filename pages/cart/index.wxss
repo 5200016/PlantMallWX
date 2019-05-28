@@ -1,0 +1,240 @@
+@import "../../public/wxss/index.wxss";
+.container {
+    padding-bottom: 140rpx;
+}
+
+.wdb {
+    width: 100%;
+    float: left;
+}
+
+.cart_cont {
+    background: #fff;
+    border-top: 1rpx solid #e5e5e5;
+    border-bottom: 1rpx solid #e5e5e5;
+    float: left;
+    margin-bottom: 10rpx;
+    padding-left: 30rpx;
+    width: -webkit-calc(100% - 30rpx);
+    width: calc(100% - 30rpx);
+}
+
+.cart_cont:first-child {
+    border-top: 0;
+}
+
+.title {
+    font-size: 28rpx;
+    color: #000;
+    width: 100%;
+    height: 78rpx;
+    line-height: 78rpx;
+    float: left;
+}
+
+.shop_check {
+    float: left;
+    border-radius: 50%;
+    margin: 27rpx 15rpx 0 -5rpx;
+    height: 40rpx;
+}
+
+.title image {
+    width: 42rpx;
+    height: 42rpx;
+    margin: 24rpx 12rpx 19rpx 10rpx;
+    float: left;
+}
+
+.title .tit {
+    float: left;
+    width: 65%;
+    margin-top: 5rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.title text {
+    float: right;
+    font-size: 24rpx;
+    color: #888;
+}
+
+.title text.current {
+    color: #ff344b;
+}
+
+.title .follow {
+    float: right;
+    padding: 0 30rpx;
+    font-size: 28rpx;
+    margin-top: 6rpx;
+    color: #888;
+}
+
+.cont_t {
+    display: flex;
+    width: 100%;
+    border-bottom: 1rpx solid #e5e5e5;
+}
+
+.cont_t:last-child {
+    border-bottom: 0;
+}
+
+.cont_t image {
+    width: 160rpx;
+    height: 160rpx;
+    margin: 20rpx 15rpx 20rpx 10rpx;
+}
+
+.cont_t .con {
+    flex: 1;
+    width: 55%;
+    padding-left: 15rpx;
+    position: relative;
+    z-index: 0;
+}
+
+.cont_t .con .tit {
+    font-size: 28rpx;
+    line-height: 80rpx;
+    color: #000;
+    margin-top: 24rpx;
+    font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.txt {
+    font-size: 24rpx;
+    line-height: 30rpx;
+    color: #353535;
+    margin-top: 23rpx;
+}
+
+.txt2 {
+    height: 60rpx;
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.txt1 {
+    margin-top: 55rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cont_t .con .price {
+    font-size: 28rpx;
+    color: #ff344b;
+    width: 50%;
+    margin-top: 13rpx;
+    float: left;
+}
+
+.cont_t .con .num {
+    float: right;
+    width: 48%;
+    text-align: right;
+    font-size: 26rpx;
+    color: #353535;
+    margin-top: 15rpx;
+}
+
+.cont_t .con text {
+    font-size: 26rpx;
+    float: right;
+    color: #353535;
+    line-height: 26rpx;
+}
+
+.del_cont {
+    border: 1px solid #f00;
+    line-height: 190rpx;
+    background: #ff344a;
+    font-size: 28rpx;
+    color: #fff;
+    width: 116rpx;
+    text-align: center;
+}
+
+.sum_cont {
+    display: flex;
+    width: 40%;
+    float: right;
+    position: absolute;
+    right: 35rpx;
+    z-index: 1;
+}
+
+.sum_cont image {
+    width: 48rpx;
+    height: 48rpx;
+    margin: 0;
+}
+
+.sum_cont .int {
+    text-align: center;
+    flex: 1;
+}
+
+.my-check {
+    margin: 10% 15rpx 0 -5rpx;
+}
+
+.cart_bot {
+    height: 98rpx;
+    border-top: 1rpx solid #e5e5e5;
+    background: #fff;
+    position: fixed;
+    line-height: 98rpx;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.l-mycheck {
+    margin: 20rpx 20rpx 0 25rpx;
+}
+
+.checkall {
+    font-size: 28rpx;
+    color: #353535;
+    float: left;
+}
+
+.checkall text {
+    display: block;
+    float: right;
+}
+
+.allsum {
+    font-size: 28rpx;
+    color: #353535;
+    float: left;
+    text-align: right;
+    width: 40%;
+}
+
+.allsum text {
+    font-size: 28rpx;
+    color: #ff344b;
+}
+
+.paybtn {
+    font-size: 36rpx;
+    color: #fff;
+    float: right;
+    width: 280rpx;
+    background: #ff8a00;
+    text-align: center;
+}

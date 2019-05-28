@@ -8,7 +8,6 @@ Page({
     data: {
         url: app.globalData.HOST + '/',
         hidden: false,
-        hiddenModal: true,
         currentTab: -1,
         pageNum: 1,
         pageSize: 5,
@@ -16,6 +15,7 @@ Page({
         totalElements: 0,
         orderList: [],
         scrollHeight: 0,
+        hiddenModal: true,
         modalTitle: '',
         modalConfirmText: '',
         modalCancelText: '',

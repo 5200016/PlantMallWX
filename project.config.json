@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 11,
 			"list": [
 				{
 					"id": -1,
@@ -115,6 +115,13 @@
 					"id": -1,
 					"name": "养护计划",
 					"pathName": "pages/user/plant_service/detail/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "购物车",
+					"pathName": "pages/cart/index",
 					"scene": null
 				}
 			]

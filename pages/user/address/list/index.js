@@ -1,4 +1,5 @@
 const app = getApp();
+const util = require("../../../../utils/util.js");
 Page({
 
     /**
@@ -131,6 +132,13 @@ Page({
                 });
             }
         });
+
+        if(!util.isEmpty(options.origin)){
+            this.setData({
+                origin: options.origin
+            })
+        }
+
         wx.setStorageSync("addressListType", "");
         if("chose" != wx.getStorageSync("addressListType") && options.act == "choose"){
             wx.setStorageSync("addressListType", "chose");
