@@ -201,10 +201,11 @@ Page({
                 });
             }
         });
-        if(!util.isEmpty()){
+        if(!util.isEmpty(options.status)){
             this.setData({
                 currentTab: options.status
             });
+            this.getOrderList();
         }
     },
 
@@ -212,7 +213,6 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-        this.getOrderList();
     },
 
     /**

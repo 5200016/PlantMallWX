@@ -26,7 +26,7 @@
 
             <!-- 商品 -->
             <scroll-view bindscrolltolower="lower" class="pro-list fl" enableBackToTop="true" scrollY="true" style="height:{{scrollHeight2}}px">
-                <navigator class="pro-item" hoverClass="none" url="../detail/index?id={{item.id}}&classifyType={{classifyType}}" wx:for="{{productList}}" wx:key="productList" wx:for-item="item">
+                <navigator class="pro-item" hoverClass="none" url="../detail/index?id={{item.id}}&classifyType={{classifyType}}" wx:for="{{productList}}" wx:for-index="productIndex" wx:key="productList" wx:for-item="item">
                     <button class="but_ui flex" formType="submit">
                         <image binderror="errImg" data-errorimg="{{index}}" src="{{url + item.image}}"></image>
                         <view class="pro-desc flex-extend">
@@ -35,7 +35,19 @@
                             <view class="price-add-image">
                                 <text class="pro-price" wx:if="{{classifyType === 0}}">{{item.price}} ￥</text>
                                 <text class="pro-price" wx:if="{{classifyType === 1}}">{{item.leasePrice}} ￥</text>
-                                <image catchtap="addShoppingCar" src="../../../static/image/plus.png" class="plus_btn" wx:if="{{item.classifyType == 1}}"></image>
+                                <image catchtap="addShoppingCar"
+                                       data-product-id="{{item.id}}"
+                                       data-product-type="{{classifyType}}"
+                                       data-product-index="{{productIndex}}"
+                                       src="../../../static/image/plus.png" class="plus_btn"></image>
+                                <view class="product-number" wx:if="{{item.number > 0}}">
+                                    <input bindinput="checkInput" disabled="true" type="number" value="{{item.number}}"></input>
+                                </view>
+                                <image catchtap="reduceShoppingCar"
+                                       data-product-id="{{item.id}}"
+                                       data-product-type="{{classifyType}}"
+                                       data-product-index="{{productIndex}}"
+                                       src="../../../static/image/minus.png" class="minus_btn" wx:if="{{item.number > 0}}"></image>
                             </view>
                         </view>
                     </button>

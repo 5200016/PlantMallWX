@@ -1,4 +1,4 @@
-@import "../../../../public/wxss/index.wxss";
+@import "../../../public/wxss/index.wxss";
 
 .liuyan {
     color: #000;
@@ -16,7 +16,9 @@
     margin: 36rpx 0;
     width: 150rpx;
     font-size: 28rpx;
-    line-height: 28rpx;
+    line-height: 0rpx;
+    text-align:right;
+
 }
 
 .liuyan input {
@@ -29,8 +31,13 @@
 
 .content{
     margin: 0rpx 10rpx;
-    padding-top: 31rpx;
+    padding-top: 17rpx;
+    width:76%;
 }
+
+.description{
+}
+
 .content-date{
     padding: 15rpx 0;
 }
@@ -38,7 +45,7 @@
 
 .content-date{
     width: 80%;
-    line-height: 65rpx;
+    line-height: 50rpx;
     display: flex;
     flex-direction : row;
     flex-wrap: wrap;
@@ -46,22 +53,24 @@
 }
 
 .date-item{
-    margin: 10rpx;
+    margin:5rpx 5rpx 5rpx 5rpx;
     background-color: #4188f0;
     color: #FFF;
     border-radius: 10rpx;
     text-align: center;
-    width: 172rpx;
+    width: 143rpx;
+    font-size: 24rpx;
 }
 
 .od_kai {
     background: #fff;
     border-top: 1rpx solid #e5e5e5;
+    border-bottom: 1rpx solid #e5e5e5;
+    margin-bottom: 10rpx;
 }
 
 .or_wai {
     background: #fff;
-    padding-left: 20rpx;
 }
 
 page {

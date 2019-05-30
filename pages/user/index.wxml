@@ -4,7 +4,7 @@
 <import src="../../utils/wetoast/wetoast.wxml"></import>
 <template is="wetoast" data="{{...__wetoast__}}"></template>
 <view>
-    <form bindsubmit="formsubmit" reportSubmit="report-submit">
+    <form bindsubmit="formsubmit" reportSubmit="report-submit" bindsubmit='getFormID'>
         <view class="p_container">
             <view class="user_top">
 
@@ -30,9 +30,10 @@
                         </button>
                     </view>
                 </block>
+
             </view>
             <view class="myorder">
-                <view bindtap="jumpTo" class="listli" data-url="../user/order/list/index">
+                <view bindtap="jumpTo" class="listli" data-url="../user/order/list/index?status=-1">
                     <button class="but_ui">
                         <image src="../../static/image/order/order.png"></image>
                         我的订单
@@ -42,35 +43,35 @@
                     </button>
                 </view>
                 <view class="cont">
-                    <view bindtap="jumpTo" class="navigator" data-url="../user/order/list/index?status=1">
+                    <view bindtap="jumpTo" class="navigator" data-url="../user/order/list/index?status=0">
                         <button class="but_t" formType="submit">
                             <view class="count" wx:if="{{count_1}}">{{count_1}}</view>
                             <image src="../../static/image/order/wait_pay.png"></image>
                             <text>待付款</text>
                         </button>
                     </view>
-                    <view bindtap="jumpTo" class="navigator" data-url="../user/order/list/index?status=2">
+                    <view bindtap="jumpTo" class="navigator" data-url="../user/order/list/index?status=1">
                         <button class="but_t" formType="submit">
                             <view class="count" wx:if="{{count_2}}">{{count_2}}</view>
                             <image src="../../static/image/order/wait_send.png"></image>
                             <text>待发货</text>
                         </button>
                     </view>
-                    <view bindtap="jumpTo" class="navigator" data-url="../user/order/list/index?status=3">
+                    <view bindtap="jumpTo" class="navigator" data-url="../user/order/list/index?status=2">
                         <button class="but_t" formType="submit">
                             <view class="count" wx:if="{{count_3}}">{{count_3}}</view>
                             <image src="../../static/image/order/wait_receive.png"></image>
                             <text>待收货</text>
                         </button>
                     </view>
-                    <view bindtap="jumpTo" class="navigator" data-url="../user/order/list/index?status=4">
+                    <view bindtap="jumpTo" class="navigator" data-url="../user/order/list/index?status=3">
                         <button class="but_t" formType="submit">
                             <view class="count" wx:if="{{count_4}}">{{count_4}}</view>
                             <image src="../../static/image/order/wait_review.png"></image>
                             <text>待评价</text>
                         </button>
                     </view>
-                    <view bindtap="jumpTo" class="navigator" data-url="../user/order/list/index?status=5">
+                    <view bindtap="jumpTo" class="navigator" data-url="../user/order/list/index?status=4">
                         <button class="but_t" formType="submit">
                             <view class="count" wx:if="{{count_5}}">{{count_5}}</view>
                             <image src="../../static/image/order/wait_pay_out.png"></image>
@@ -84,6 +85,15 @@
                     <button class="but_ui" formType="submit">
                         <image src="../../static/image/function/plant_service.png"></image>
                         绿植养护
+                        <span>
+                            <image src="../../static/image/more.png"></image>
+                        </span>
+                    </button>
+                </view>
+                <view bindtap="jumpTo" class="listli" data-url="../user/service_task/index">
+                    <button class="but_ui" formType="submit" >
+                        <image src="../../static/image/function/task.png"></image>
+                        养护任务
                         <span>
                             <image src="../../static/image/more.png"></image>
                         </span>

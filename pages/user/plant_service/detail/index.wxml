@@ -3,13 +3,13 @@
         <view class="or_wai">
             <view class="liuyan">
                 <text>养护人员：</text>
-                <view class="content">{{maintenance.maintenancePersonnel.name}}</view>
+                <view class="content">{{maintenance.maintenancePersonnel.user.username}}</view>
             </view>
             <view class="liuyan">
                 <text>联系方式：</text>
-                <view class="content">{{maintenance.maintenancePersonnel.phone}}</view>
+                <view class="content">{{maintenance.maintenancePersonnel.user.phone}}</view>
             </view>
-            <view class="liuyan">
+            <view class="liuyan cancel-border">
                 <text>养护日期：</text>
                 <view class="content-date">
                     <view class="date-item" wx:for="{{dateArray}}" wx:key="dateArray" wx:for-item="item">{{item}}</view>

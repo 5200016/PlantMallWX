@@ -130,8 +130,12 @@ Page({
         };
         app.wxRequest('GET', url, data, (res) => {
             if (res.result) {
+                let productList = res.data.content;
+                for(let i in productList){
+                    productList[i].number = 0;
+                }
                 this.setData({
-                    productList: res.data.content,
+                    productList: productList,
                     totalPages: res.data.totalPages,
                     totalElements: res.data.totalElements,
                     hidden: true
@@ -264,19 +268,86 @@ Page({
         this.getProductList(this.data.classifyId, this.data.classifyType, this.data.keyWordProd, this.data.hotRankId);
     },
 
-    addShoppingCar: function(){
-        let data = wx.getStorageSync("shoppingCar");
-        data++;
-        wx.setStorageSync("shoppingCar", data);
-        wx.setTabBarBadge({
-            index: 2,
-            text: data.toString()
+    addShoppingCar: function(e){
+        let productId = e.currentTarget.dataset.productId,
+            productType = e.currentTarget.dataset.productType,
+            productIndex = e.currentTarget.dataset.productIndex;
+        let productList = this.data.productList;
+        productList[productIndex].number ++;
+
+        this.setData({
+            productList: productList
+        });
+        let url = '/product/operation';
+        let data = {
+            userId: wx.getStorageSync("userId"),
+            productId: productId,
+            productType: productType,
+            number: 1,
+            type: 1
+        };
+        app.wxRequest('PUT', url, data, (res) => {
+            if (res.result) {
+
+            } else {
+                app.optionToast(res.msg);
+            }
+        }, (err) => {
+            console.log(err.data);
         });
 
-        // 清除tabbar数字标志
-        // wx.removeTabBarBadge({
-        //     index: 2
-        // })
+
+        let shoppingCarData = wx.getStorageSync("shoppingCar");
+        shoppingCarData++;
+        wx.setStorageSync("shoppingCar", shoppingCarData);
+        wx.setTabBarBadge({
+            index: 2,
+            text: shoppingCarData.toString()
+        });
+    },
+
+    reduceShoppingCar: function(e){
+        let productId = e.currentTarget.dataset.productId,
+            productType = e.currentTarget.dataset.productType,
+            productIndex = e.currentTarget.dataset.productIndex;
+
+        let productList = this.data.productList;
+        productList[productIndex].number --;
+
+        this.setData({
+            productList: productList
+        });
+        let url = '/product/operation';
+        let data = {
+            userId: wx.getStorageSync("userId"),
+            productId: productId,
+            productType: productType,
+            number: 1,
+            type: 0
+        };
+        app.wxRequest('PUT', url, data, (res) => {
+            if (res.result) {
+
+            } else {
+                app.optionToast(res.msg);
+            }
+        }, (err) => {
+            console.log(err.data);
+        });
+
+        let shoppingCarData = wx.getStorageSync("shoppingCar");
+        shoppingCarData--;
+        if(shoppingCarData > 0){
+            wx.setStorageSync("shoppingCar", shoppingCarData);
+            wx.setTabBarBadge({
+                index: 2,
+                text: shoppingCarData.toString()
+            });
+        }else {
+            wx.removeTabBarBadge({
+                index: 2
+            });
+        }
     },
 
     onLoad: function() {
@@ -293,25 +364,13 @@ Page({
             }
         });
         this.getClassifyGroup();
-        // this.setData({
-        //     page: 1,
-        //     maxpage: 1,
-        //     list: [],
-        //     isloading: !1,
-        //     hiddenmore: !0,
-        //     hotRank: s,
-        //     locationName: wx.getStorageSync("locationName")
-        // }), 2 == this.data.classifyType && wx.setStorageSync("keyWordProd", ""), f(this), e(this),
-        //     p(this);
     },
     onUnload: function() {
         clearInterval();
     },
     onReady: function() {},
     onShow: function() {
-        this.setData({
-            filter: wx.getStorageSync("filter")
-        }), 2 == this.data.classifyType && wx.setStorageSync("keyWordProd", "");
+
     },
     upper: function(t) {
         var e = this;

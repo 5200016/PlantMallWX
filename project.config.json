@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 11,
+			"current": 12,
 			"list": [
 				{
 					"id": -1,
@@ -122,6 +122,13 @@
 					"id": -1,
 					"name": "购物车",
 					"pathName": "pages/cart/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "养护任务",
+					"pathName": "pages/user/service_task/index",
 					"scene": null
 				}
 			]

@@ -450,15 +450,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        let that = this;
-        wx.getSystemInfo({
-            success: function (t) {
-                that.setData({
-                    scrollHeight: t.windowHeight
-                });
-            }
-        });
-        this.getShoppingCarList();
+
     },
 
     /**
@@ -472,7 +464,19 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        let that = this;
+        wx.getSystemInfo({
+            success: function (t) {
+                that.setData({
+                    scrollHeight: t.windowHeight
+                });
+            }
+        });
+        wx.removeTabBarBadge({
+            index: 2
+        });
+        wx.setStorageSync("shoppingCar", 0);
+        this.getShoppingCarList();
     },
 
     /**
@@ -493,7 +497,15 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
-
+        let that = this;
+        wx.getSystemInfo({
+            success: function (t) {
+                that.setData({
+                    scrollHeight: t.windowHeight
+                });
+            }
+        });
+        this.getShoppingCarList();
     },
 
     /**

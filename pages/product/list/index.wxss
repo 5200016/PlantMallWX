@@ -4,11 +4,28 @@ view {
     box-sizing: border-box;
 }
 
+.product-number{
+    text-align: center;
+    width: 45rpx;
+    position: absolute;
+    right: 60rpx;
+    top: 17rpx;
+
+}
+
 .plus_btn{
     width: 50rpx !important;
     height: 50rpx !important;
     position:absolute;
     right: 0rpx;
+    top: 17rpx
+}
+
+.minus_btn{
+    width: 50rpx !important;
+    height: 50rpx !important;
+    position:absolute;
+    right: 115rpx;
     top: 17rpx
 }
 
@@ -425,10 +442,10 @@ button.but_ui::after {
 .pro-item {
     height: 200rpx;
     margin-top: 1rpx;
-    margin-left: 75rpx;
     padding: 20rpx 15rpx 0rpx 5rpx;
     border-bottom: 1rpx solid #dadada;
     box-sizing: border-box;
+    margin-left: 15rpx;
 }
 
 .pro-item:last-child {

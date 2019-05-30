@@ -1,0 +1,28 @@
+<view wx:for="{{taskList}}" wx:key="taskList" wx:for-item="item">
+    <view class="od_kai">
+        <view class="or_wai">
+            <view class="liuyan">
+                <text>订单号：</text>
+                <view class="content">{{item.tradeNo}}</view>
+            </view>
+            <view class="liuyan">
+                <text>客户姓名：</text>
+                <view class="content">{{item.receiverAddress.name}}</view>
+            </view>
+            <view class="liuyan">
+                <text>联系方式：</text>
+                <view class="content">{{item.receiverAddress.phone}}</view>
+            </view>
+            <view class="liuyan description">
+                <text>养护描述：</text>
+                <view class="content">{{item.maintenanceDescription}}</view>
+            </view>
+            <view class="liuyan cancel-border">
+                <text>养护日期：</text>
+                <view class="content-date">
+                    <view class="date-item" wx:for="{{item.dateArray}}" wx:key="dateArray" wx:for-item="item">{{item}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
