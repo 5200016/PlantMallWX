@@ -1,4 +1,5 @@
 const app = getApp();
+const util = require("../../utils/util.js");
 Page({
     /**
      * 页面的初始数据
@@ -67,7 +68,7 @@ Page({
         app.wxRequest('GET', url, data, (res) => {
             if (res.result && res.data !== null) {
                 let phoneStatus = false;
-                if (res.data.phone !== '') {
+                if (!util.isEmpty(res.data.phone)) {
                     phoneStatus = true;
                 }
                 this.setData({
@@ -104,7 +105,7 @@ Page({
         "getUserInfo:ok" === errMsg && app.wxRequest('POST', url, data, (res) => {
             if (res.result) {
                 let phoneStatus = false;
-                if (res.data.phone !== '') {
+                if (!util.isEmpty(res.data.phone)) {
                     phoneStatus = true;
                 }
                 this.setData({

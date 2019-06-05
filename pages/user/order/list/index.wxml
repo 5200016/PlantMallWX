@@ -37,7 +37,10 @@
                                    src="{{url}}{{orderProducts.product.image}}"></image>
                             <view class="con">
                                 <view class="tit">{{orderProducts.product.name}}</view>
-                                <view class="price">¥{{orderProducts.product.price || 0}}
+                                <view class="price" wx:if="{{item.type == 0}}">¥{{orderProducts.product.price || 0}}
+                                    <text>×{{orderProducts.productNumber || 0}}</text>
+                                </view>
+                                <view class="price" wx:if="{{item.type == 1}}">¥{{orderProducts.product.leasePrice || 0}}
                                     <text>×{{orderProducts.productNumber || 0}}</text>
                                 </view>
                             </view>
@@ -49,8 +52,8 @@
                     </view>
                     <view class="con_b">
                         <view wx:if="{{item.status == 0}}">
-                            <view bindtap="pay_btn" class="btn pay_btn" data-ordersn="{{item.id}}">支付</view>
-                            <view bindtap="cancel_btn" class="btn cancel_btn" data-ordersn="{{item.id}}">取消</view>
+                            <view bindtap="waitOrderPay" class="btn pay_btn" data-id="{{item.id}}" data-price="{{item.price}}">支付</view>
+                            <view bindtap="deleteBtn" class="btn cancel_btn" data-id="{{item.id}}">取消</view>
                         </view>
                         <view wx:elif="{{item.status == 1}}">
                             <view bindtap="deleteBtn" class="btn del_btn" data-ordersn="{{item.id}}">申请退款</view>

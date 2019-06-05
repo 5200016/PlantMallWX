@@ -208,7 +208,8 @@
 
 .checkall {
     font-size: 28rpx;
-    color: #353535;
+    /*color: #353535;*/
+    color: #FFFFFF;
     float: left;
 }
 

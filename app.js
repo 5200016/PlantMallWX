@@ -42,6 +42,21 @@ App({
                 }
             }
         })
+        this.getContactInfo();
+    },
+
+    getContactInfo: function(){
+        let url = '/customer_service';
+        this.wxRequest('GET', url, null, (res) => {
+            if (res.result) {
+                wx.setStorageSync("phone", res.data.phone);
+            } else {
+                app.optionToast(res.msg);
+            }
+        }, (err) => {
+            console.log(err.data);
+
+        });
     },
 
     getrequestHeader: function() {
@@ -85,7 +100,8 @@ App({
 
     globalData: {
         // 服务器域名
-        HOST: 'http://47.100.4.198:8081',
+        HOST: 'https://zdshop.zhideweini.com',
+        // HOST: 'http://47.100.4.198:8081',
         // HOST: 'http://localhost:8081',
 
         // 全局请求URL

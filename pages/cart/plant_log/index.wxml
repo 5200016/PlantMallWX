@@ -6,8 +6,8 @@
         <image class="module-image" binderror="errImg"  mode="scaleToFill" src="{{url}}{{plantLogModule.image}}"></image>
         <view class="m_prolist_cont">
             <view wx:if="{{totalElements > 0}}">
-                <view class="venues_item flex_auto" wx:for="{{plantLogList}}">
-                    <navigator hoverClass="none" url="../group/index?id={{item.id}}">
+                <view class="venues_item flex_auto" wx:for="{{plantLogList}}" wx:key="plantLogList">
+                    <navigator hoverClass="none" url="../plant_log/detail/index?id={{item.id}}">
                         <button class="but_ui" formType="submit">
                             <view class="expire-wrap">
                                 <image binderror="errImg" data-errorimg="{{index}}" mode="scaleToFill" src="{{url}}{{item.image}}"></image>

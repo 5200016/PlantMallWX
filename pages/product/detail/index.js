@@ -18,6 +18,7 @@ Page({
         totalPrice: 0,
         inventory: 0,
         classifyType: null,
+        phone: '',
 
         num1: [1, 2, 3, 4, 5],
         num2: [1, 2, 3],
@@ -196,13 +197,30 @@ Page({
     },
 
     /**
+     * 打电话
+     */
+    calling: function(e) {
+        let phone = e.target.dataset.phone;
+        wx.makePhoneCall({
+            phoneNumber: phone,
+            success: function() {
+                console.log("拨打电话成功！");
+            },
+            fail: function() {
+                console.log("拨打电话失败！");
+            }
+        });
+    },
+
+    /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
         this.setData({
             id: options.id,
             classifyType: parseInt(options.classifyType),
-            scrollHeight: wx.getStorageSync("scrollHeight")
+            scrollHeight: wx.getStorageSync("scrollHeight"),
+            phone: wx.getStorageSync("phone")
         });
         this.getProductById(options.id);
     },

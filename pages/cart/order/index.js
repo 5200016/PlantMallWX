@@ -110,19 +110,37 @@ Page({
      * 订单支付
      */
     btnPay: function (){
-        let url = '/order';
-        let payNO = 12345654321;
+        let url = '/pay';
         let data = {
+            openid: wx.getStorageSync("openid"),
+            userId: wx.getStorageSync("userId"),
+            payPrice: this.data.payPrice,
             sell: this.data.orderPayList.sell,
             lease: this.data.orderPayList.lease,
             shoppingProductIdList: this.data.orderPayList.shoppingProductIdList,
-            payNo: payNO,
-            userId: wx.getStorageSync("userId"),
-            receiveAddressId: this.data.addressId,
+            receiveAddressId: this.data.addressId
         };
         app.wxRequest('POST', url, data, (res) => {
             if (res.result) {
-                app.optionToast(res.msg);
+                wx.requestPayment({
+                    timeStamp: res.data.timeStamp,
+                    nonceStr: res.data.nonceStr,
+                    package: res.data.package,
+                    signType: res.data.signType,
+                    paySign: res.data.paySign,
+                    success: function(e) {
+                        if("requestPayment:ok" == e.errMsg){
+                            wx.navigateTo({
+                                url: "/pages/user/order/list/index?status=1" ,
+                            });
+                        }
+                    },
+                    fail: function() {
+                        wx.navigateTo({
+                            url: "/pages/user/order/list/index?status=0" ,
+                        });
+                    }
+                });
             } else {
                 app.optionToast(res.msg);
             }

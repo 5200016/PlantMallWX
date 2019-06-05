@@ -4,6 +4,11 @@
 <modal bindcancel="modalCancel" bindconfirm="modalConfirm" cancelText="{{modalCancelText}}"
        confirmText="{{modalConfirmText}}" data-act="{{modalAct}}" data-id="{{modalShoppingProductId}}"
        hidden="{{hiddenModal}}" title="{{modalTitle}}"></modal>
+
+<modal bindconfirm="modalLoginConfirm" confirmText="确定" hidden="{{hiddenLoginModal}}" noCancel="true"
+       title="{{modalLoginTitle}}">
+</modal>
+
 <view class="container">
     <view class="top_bor"></view>
     <view class="wdb" wx:if="{{totalElements > 0}}">
@@ -71,7 +76,8 @@
         </view>
         <view class="cart_bot">
             <view bindtap="clickallIcon" class="checkall">
-                <icon class="l-mycheck" color="{{iconAllChosed?'orange':''}}" size="20" type="{{iconAllChosed?'success':'circle'}}"></icon>
+                <!--<icon class="l-mycheck" color="{{iconAllChosed?'orange':''}}" size="20" type="{{iconAllChosed?'success':'circle'}}"></icon>-->
+                <icon class="l-mycheck"></icon>
                 <text>全选</text>
             </view>
             <view class="allsum">

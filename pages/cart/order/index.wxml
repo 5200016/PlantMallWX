@@ -53,17 +53,17 @@
             <view class="clear"></view>
 
             <!-- 使用积分 -->
-            <view class="dil_xx" wx:if="{{nonSeckill&&(info.promotion_price>0||info.promotion_score>0)}}">
-                <view class="tbt">
-                    <icon bindtap="clickpIcon" class="shop_check" color="{{!hava_orno?'':'orange'}}" data-sid="{{sid}}"
-                          size="20" type="{{!hava_orno?'circle':'success'}}"></icon>
-                    <text bindtap="clickpIcon">使用兑换价</text>
-                </view>
-                <view class="tat">￥{{promotion_price}}+{{promotion_score}}
-                    <text>积分</text>
-                </view>
-                <view class="clear"></view>
-            </view>
+            <!--<view class="dil_xx" wx:if="{{nonSeckill&&(info.promotion_price>0||info.promotion_score>0)}}">-->
+                <!--<view class="tbt">-->
+                    <!--<icon bindtap="clickpIcon" class="shop_check" color="{{!hava_orno?'':'orange'}}" data-sid="{{sid}}"-->
+                          <!--size="20" type="{{!hava_orno?'circle':'success'}}"></icon>-->
+                    <!--<text bindtap="clickpIcon">使用兑换价</text>-->
+                <!--</view>-->
+                <!--<view class="tat">￥{{promotion_price}}+{{promotion_score}}-->
+                    <!--<text>积分</text>-->
+                <!--</view>-->
+                <!--<view class="clear"></view>-->
+            <!--</view>-->
 
             <view class="detail_xx">
                 <view class="txt">配送方式
@@ -72,13 +72,13 @@
             </view>
             <view class="clear"></view>
 
-            <view bindtap="setModalStatus" class="plea_youhui" data-status="1">
-                <text>选择优惠券</text>
-                <view class="coupon">{{singleCoupon}}</view>
-                <view class="choose_btn">
-                    <image src="../../../static/image/more.png"></image>
-                </view>
-            </view>
+            <!--<view bindtap="setModalStatus" class="plea_youhui" data-status="1">-->
+                <!--<text>选择优惠券</text>-->
+                <!--<view class="coupon">{{singleCoupon}}</view>-->
+                <!--<view class="choose_btn">-->
+                    <!--<image src="../../../static/image/more.png"></image>-->
+                <!--</view>-->
+            <!--</view>-->
 
             <view class="liuyan">
                 <text>留言</text>
@@ -128,13 +128,13 @@
             </view>
             <view class="clear"></view>
 
-            <view bindtap="setModalStatus" class="plea_youhui" data-status="1">
-                <text>选择优惠券</text>
-                <view class="coupon">{{singleCoupon}}</view>
-                <view class="choose_btn">
-                    <image src="../../../static/image/more.png"></image>
-                </view>
-            </view>
+            <!--<view bindtap="setModalStatus" class="plea_youhui" data-status="1">-->
+                <!--<text>选择优惠券</text>-->
+                <!--<view class="coupon">{{singleCoupon}}</view>-->
+                <!--<view class="choose_btn">-->
+                    <!--<image src="../../../static/image/more.png"></image>-->
+                <!--</view>-->
+            <!--</view>-->
 
             <view class="liuyan">
                 <text>留言</text>

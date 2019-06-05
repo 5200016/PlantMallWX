@@ -1,4 +1,5 @@
 const app = getApp();
+const util = require("../../../utils/util.js");
 Page({
     data: {
         classifyList: [],
@@ -14,6 +15,8 @@ Page({
         totalElements: 0,
         keyWordProd: '',
         hidden: false,
+        hiddenModal: false,
+        modalTitle: "您尚未登录，请前往'我的'界面完成登录",
 
         // 热门排序
         hotRank: [
@@ -81,18 +84,29 @@ Page({
     /**
      * 分组查询商品分类
      */
-    getClassifyGroup: function(){
+    getClassifyGroup: function(id, type){
         let url = '/classify/list';
         app.wxRequest('GET', url, null, (res) => {
             if (res.result) {
                 if(res.data.length > 0){
                     this.setData({
-                        classifyList: res.data,
-                        classifyId: res.data[0].id,
-                        classifyType: res.data[0].type
+                        classifyList: res.data
                     });
-
-                    this.getProductList(res.data[0].id, res.data[0].type, '', -1);
+                    if(!util.isEmpty(id) && !util.isEmpty(type)){
+                        let classifyId = parseInt(id);
+                        let classifyType = parseInt(type);
+                        this.setData({
+                            classifyId: classifyId,
+                            classifyType: classifyType
+                        });
+                        this.getProductList(classifyId, classifyType, '', -1);
+                    }else {
+                        this.setData({
+                            classifyId: res.data[0].id,
+                            classifyType: res.data[0].type
+                        });
+                        this.getProductList(res.data[0].id, res.data[0].type, '', -1);
+                    }
                 }
             } else {
                 app.optionToast(res.msg);
@@ -138,8 +152,10 @@ Page({
                     productList: productList,
                     totalPages: res.data.totalPages,
                     totalElements: res.data.totalElements,
-                    hidden: true
+                    hidden: true,
                 });
+                wx.setStorageSync("bannerClassifyId", "");
+                wx.setStorageSync("bannerClassifyType", "");
                 this.chooseClassify(classifyId);
             } else {
                 app.optionToast(res.msg);
@@ -350,7 +366,24 @@ Page({
         }
     },
 
+    /**
+     * 弹出框确定按钮
+     */
+    modalConfirm: function(){
+        wx.switchTab({
+            url: '/pages/user/index'
+        })
+    },
+
     onLoad: function() {
+        let openid = wx.getStorageSync("openid"),
+            userId = wx.getStorageSync("userId");
+        if(!util.isEmpty(openid) && !util.isEmpty(userId)){
+            this.setData({
+                hiddenModal: true
+            })
+        }
+
         let that = this;
         wx.getSystemInfo({
             success: function(e) {
@@ -363,14 +396,16 @@ Page({
                 });
             }
         });
-        this.getClassifyGroup();
+        let classifyId = wx.getStorageSync("bannerClassifyId"),
+            classifyType = wx.getStorageSync("bannerClassifyType");
+        this.getClassifyGroup(classifyId, classifyType);
     },
     onUnload: function() {
         clearInterval();
     },
     onReady: function() {},
     onShow: function() {
-
+        this.onLoad()
     },
     upper: function(t) {
         var e = this;

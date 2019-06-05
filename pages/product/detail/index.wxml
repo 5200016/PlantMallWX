@@ -24,26 +24,26 @@
     </view>
 
     <!-- 商品评价 -->
-    <view class="comment">
-        <view class="cmt_header clearfix">
-            <image src="../../../static/image/review.png"></image>
-            <view>商品评价
-                <text>({{info.comment_number||0}})</text>
-            </view>
-        </view>
-        <view class="comment_user clearfix">
-            <image binderror="erroruserlogo" class="cmt_logo"
-                   src="{{info.comment_info.buyer_logo||'../../../static/image/review.png'}}"></image>
-            <view class="cmt_username">hzc</view>
-            <view class="stars">
-                <image src="../../../static/image/star1.png" wx:for="{{num1}}"></image>
-                <image src="../../../static/image/star2.png" wx:if="{{num2}}"></image>
-                <image src="../../../static/image/star3.png" wx:for="{{num3}}"></image>
-            </view>
-        </view>
-        <view class="comment_txt">卖家态度很好！</view>
-        <navigator class="more_comment" hoverClass="none" url="../comment_list/index?id={{info.id}}">更多评价</navigator>
-    </view>
+    <!--<view class="comment">-->
+        <!--<view class="cmt_header clearfix">-->
+            <!--<image src="../../../static/image/review.png"></image>-->
+            <!--<view>商品评价-->
+                <!--<text>({{info.comment_number||0}})</text>-->
+            <!--</view>-->
+        <!--</view>-->
+        <!--<view class="comment_user clearfix">-->
+            <!--<image binderror="erroruserlogo" class="cmt_logo"-->
+                   <!--src="{{info.comment_info.buyer_logo||'../../../static/image/review.png'}}"></image>-->
+            <!--<view class="cmt_username">hzc</view>-->
+            <!--<view class="stars">-->
+                <!--<image src="../../../static/image/star1.png" wx:for="{{num1}}"></image>-->
+                <!--<image src="../../../static/image/star2.png" wx:if="{{num2}}"></image>-->
+                <!--<image src="../../../static/image/star3.png" wx:for="{{num3}}"></image>-->
+            <!--</view>-->
+        <!--</view>-->
+        <!--<view class="comment_txt">卖家态度很好！</view>-->
+        <!--<navigator class="more_comment" hoverClass="none" url="../comment_list/index?id={{info.id}}">更多评价</navigator>-->
+    <!--</view>-->
 
     <view class="detail_cont">
         <text class="tit">商品详情</text>
@@ -56,7 +56,7 @@
 <!-- 底部功能栏 -->
 <view class="detail_bot">
     <view class="cart_btn">
-        <view class="btn_center">
+        <view class="btn_center" bindtap="calling" data-phone="{{phone}}">
             <image src="../../../static/image/phone.png"></image>
             <text class="icon-text">电话</text>
         </view>
@@ -75,9 +75,9 @@
             <text class="icon-text">收藏</text>
         </view>
     </view>
-    <view bindtap="setModalStatus"
-          class="shopping_btn"
-    >加入购物车</view>
+    <!--<view bindtap="setModalStatus"-->
+          <!--class="shopping_btn"-->
+    <!--&gt;加入购物车</view>-->
     <view bindtap="setModalStatus"
           data-status="1"
           class="buy_btn" wx:if="{{classifyType === 0}}">立即购买</view>

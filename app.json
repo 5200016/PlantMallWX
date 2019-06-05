@@ -17,7 +17,8 @@
     "pages/cart/plant_log/index",
     "pages/user/plant_service/detail/index",
     "pages/cart/index",
-    "pages/user/service_task/index"
+    "pages/user/service_task/index",
+    "pages/cart/plant_log/detail/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

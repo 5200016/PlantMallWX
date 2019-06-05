@@ -61,8 +61,8 @@ Page({
             case "confirmOrder":
                 this.confirmReceive(id);
                 break;
-            case "deleteOrder":
-                this.deleteOrder(id);
+            case "waitOrderCancel":
+                this.waitOrderCancel(id);
                 break;
         }
         this.setData({
@@ -81,19 +81,12 @@ Page({
     deleteBtn: function(e){
         this.setData({
             hiddenModal: false,
-            modalTitle: "您是否删除此订单",
+            modalTitle: "您是否取消此订单",
             modalConfirmText: "是",
             modalCancelText: "否",
-            modalAct: "deleteOrder",
+            modalAct: "waitOrderCancel",
             modalOrderId: e.target.dataset.id
         });
-    },
-
-    /**
-     * 删除订单
-     */
-    deleteOrder: function(id){
-
     },
 
     /**
@@ -187,6 +180,62 @@ Page({
             orderList: []
         });
         this.getOrderList();
+    },
+
+    waitOrderPay: function(e){
+        let url = '/pay/wait_pay';
+        let data = {
+            openid: wx.getStorageSync("openid"),
+            totalPrice: e.currentTarget.dataset.price
+        };
+        app.wxRequest('POST', url, data, (res) => {
+            if (res.result) {
+                wx.requestPayment({
+                    timeStamp: res.data.timeStamp,
+                    nonceStr: res.data.nonceStr,
+                    package: res.data.package,
+                    signType: res.data.signType,
+                    paySign: res.data.paySign,
+                    success: function(e) {
+                        if("requestPayment:ok" == e.errMsg){
+                            console.log("支付成功")
+                        }
+                    },
+                    fail: function() {
+                        console.log("支付失败")
+                    }
+                });
+            } else {
+                app.optionToast(res.msg);
+            }
+        }, (err) => {
+            console.log(err.data);
+        });
+    },
+
+    updateWaitPayOrder: function(){
+
+    },
+
+    waitOrderCancel:function(id){
+        let url = '/order/cancel?id=' + id;
+        app.wxRequest('DELETE', url, null, (res) => {
+            if (res.result) {
+                app.optionToast(res.msg);
+                this.setData({
+                    pageNum: 1,
+                    pageSize: 5,
+                    totalPages: 0,
+                    totalElements: 0,
+                    orderList: []
+                });
+                this.getOrderList();
+            } else {
+                app.optionToast(res.msg);
+            }
+        }, (err) => {
+            console.log(err.data);
+        });
     },
 
     /**

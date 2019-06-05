@@ -1,4 +1,5 @@
 const app = getApp();
+const util = require("../../utils/util.js");
 Page({
     data: {
         hidden: false,
@@ -7,6 +8,8 @@ Page({
         middleMenuList: [],   // 模块列表
         bottomMenuList: [],   // 模块列表
         url: app.globalData.HOST + '/',
+        hiddenModal: false,
+        modalTitle: "您尚未登录，请前往'我的'界面完成登录",
 
         hhidden: !0,
         moudle: [],
@@ -122,9 +125,26 @@ Page({
 
     },
 
+    /**
+     * 弹出框确定按钮
+     */
+    modalConfirm: function(){
+        wx.switchTab({
+            url: '/pages/user/index'
+        })
+    },
+
     onLoad: function (t) {
+
     },
     onShow: function () {
+        let openid = wx.getStorageSync("openid"),
+            userId = wx.getStorageSync("userId");
+        if(!util.isEmpty(openid) && !util.isEmpty(userId)){
+            this.setData({
+                hiddenModal: true
+            })
+        }
         this.getBannerList(0);
         this.getBannerList(1);
         this.getModuleMenuList(0);
@@ -187,7 +207,7 @@ Page({
     onShareAppMessage: function () {
         return {
             title: this.data.title,
-            path: "/pages/index/index",
+            path: "/pages/home/index",
             success: function (t) {
                 console.log("成功");
             },
@@ -196,156 +216,33 @@ Page({
             }
         };
     },
-    clicktojump: function (t) {
-        var e = t.currentTarget.dataset.link;
-        if ("Product" == e) wx.setStorageSync("req_type", 0), wx.removeStorage({
-            key: "pro_cate"
-        }), wx.removeStorage({
-            key: "pro_cate_name"
-        }), wx.setStorageSync("filter", !1), c ? wx.switchTab({
-            url: "../product/list/index",
-            success: function (t) {
-                var e = getCurrentPages().pop();
-                void 0 != e && null != e && e.upper();
-            }
-        }) : wx.navigateTo({
-            url: "../product/list/index",
-            success: function (t) {
-                var e = getCurrentPages().pop();
-                void 0 != e && null != e && e.upper();
-            }
-        });
-        else if ("Shop" == e) g ? wx.switchTab({
-            url: "../shop/list/index"
-        }) : wx.navigateTo({
-            url: "../shop/list/index"
-        });
-        else if ("Tuan" == e) p ? wx.switchTab({
-            url: "../product/group_list/index",
-            success: function (t) {
-                var e = getCurrentPages().pop();
-                void 0 != e && null != e && e.upper();
-            }
-        }) : wx.navigateTo({
-            url: "../product/group_list/index",
-            success: function (t) {
-                var e = getCurrentPages().pop();
-                void 0 != e && null != e && e.upper();
-            }
-        });
-        else if ("Pintuan" == e) f ? wx.switchTab({
-            url: "../pintuan/index",
-            success: function (t) {
-                var e = getCurrentPages().pop();
-                void 0 != e && null != e && e.upper();
-            }
-        }) : wx.navigateTo({
-            url: "../pintuan/index",
-            success: function (t) {
-                var e = getCurrentPages().pop();
-                void 0 != e && null != e && e.upper();
-            }
-        });
-        else if ("Service" == e) m ? wx.switchTab({
-            url: "../product/fu_list/index",
-            success: function (t) {
-                var e = getCurrentPages().pop();
-                void 0 != e && null != e && e.upper();
-            }
-        }) : wx.navigateTo({
-            url: "../product/fu_list/index",
-            success: function (t) {
-                var e = getCurrentPages().pop();
-                void 0 != e && null != e && e.upper();
-            }
-        });
-        else if ("Coupon" == e) wx.navigateTo({
-            url: "../coupon/index"
-        });
-        else if ("News" == e) wx.setStorageSync("news_chkid", 0), h ? wx.switchTab({
-            url: "../news/index",
-            success: function (t) {
-                var e = getCurrentPages().pop();
-                void 0 != e && null != e && e.onLoad();
-            }
-        }) : wx.navigateTo({
-            url: "../news/index",
-            success: function (t) {
-                var e = getCurrentPages().pop();
-                void 0 != e && null != e && e.onLoad();
-            }
-        });
-        else if ("Nolink" == e) ;
-        else {
-            var a = e.split("_");
-            if ("ProductDetail" == a[0]) wx.navigateTo({
-                url: "../product/detail/index?id=" + a[1]
+
+    clickToJump: function (e) {
+        let path = e.currentTarget.dataset.path;
+        let classifyId = this.getUrlParam(path, "classifyId"),
+            classifyType = this.getUrlParam(path, "classifyType");
+        if(!util.isEmpty(classifyId)){
+            wx.setStorageSync("bannerClassifyId", classifyId);
+            wx.setStorageSync("bannerClassifyType", classifyType);
+            wx.switchTab({
+                url: "/pages/product/list/index",
             });
-            else if ("ProductCate" == a[0]) wx.setStorageSync("req_type", 0), wx.setStorageSync("pro_cate", a[1]),
-                wx.setStorageSync("pro_cate_name", a[2]), wx.setStorageSync("filter", !0), wx.navigateTo({
-                url: "../product/diylist/index",
-                success: function (t) {
-                    var e = getCurrentPages().pop();
-                    void 0 != e && null != e && e.upper();
-                }
+        }else {
+            wx.navigateTo({
+                url: "/" + path,
             });
-            else if ("NewsCate" == a[0]) wx.setStorageSync("news_chkid", a[1]), h ? wx.switchTab({
-                url: "../news/index",
-                success: function (t) {
-                    var e = getCurrentPages().pop();
-                    void 0 != e && null != e && e.onLoad();
-                }
-            }) : wx.navigateTo({
-                url: "../news/index",
-                success: function (t) {
-                    var e = getCurrentPages().pop();
-                    void 0 != e && null != e && e.onLoad();
-                }
-            });
-            else if ("News" == a[0]) wx.navigateTo({
-                url: "../news/detail/index?id=" + a[1]
-            });
-            else if ("Shop" == a[0]) wx.navigateTo({
-                url: "../shop/index/index?id=" + a[1]
-            });
-            else if ("Tuan" == a[0]) wx.navigateTo({
-                url: "../product/group/index?id=" + a[1]
-            });
-            else if ("Pintuan" == a[0]) wx.navigateTo({
-                url: "../product/pintuan/index?id=" + a[1]
-            });
-            else if ("ServiceDetail" == a[0]) wx.navigateTo({
-                url: "../product/fu_detail/index?id=" + a[1]
-            });
-            else if ("Coupon" == a[0]) {
-                D(0, a[1]);
-            } else if ("Diy" == a[0]) a[1] == i.globalData.diymodel_id ? wx.switchTab({
-                url: "../diymodeltabbar/index"
-            }) : wx.navigateTo({
-                url: "../diymodel/index?id=" + a[1]
-            });
-            else if ("Form" == a[0]) wx.navigateTo({
-                url: "../form/detail?id=" + a[1]
-            });
-            else if ("DiyUrl" == a[0]) {
-                var o = e.slice(7).split("[分隔符]");
-                wx.navigateTo({
-                    url: "../diyurl/index?title=" + o[0] + "&url=" + o[1]
-                });
-            } else if ("Lottery" == a[0]) wx.navigateTo({
-                url: "../lottery/index?id=" + a[1]
-            });
-            else if ("MiniProgram" == a[0]) {
-                var n = a[1];
-                n && wx.navigateToMiniProgram({
-                    appId: n,
-                    complete: function (t) {
-                        console.log(t);
-                    }
-                });
-            }
         }
     },
+
+    getUrlParam : function(url, name){
+        // 正则筛选地址栏
+        let reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        // 匹配目标参数
+        let result = url.substr(1).match(reg);
+        //返回参数值
+        return result ? decodeURIComponent(result[2]) : null;
+    },
+
     jumptotuan: function (t) {
         p ? wx.switchTab({
             url: "../product/group_list/index",
@@ -642,21 +539,8 @@ Page({
             title: "请选择属性"
         });
     },
-    formsubmit: function (t) {
-        var e = t.detail.formId,
-            a = parseInt(new Date().getTime() / 1e3) + 604800;
-        wx.request({
-            url: l,
-            data: {
-                formId: e,
-                expire: a
-            },
-            method: "POST",
-            header: i.getrequestHeader(),
-            complete: function (t) {
-                console.log(t);
-            }
-        });
+    formsubmit: function (e) {
+        let formId = e.detail.formId;
     },
     toLocation: function (t) {
         wx.navigateTo({

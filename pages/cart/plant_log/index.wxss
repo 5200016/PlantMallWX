@@ -44,6 +44,7 @@ view {
 .venues_item image {
     height: 230rpx;
     width: 230rpx;
+    border-radius: 10rpx 10rpx;
 }
 
 .venues_item:nth-child(even) {

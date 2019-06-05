@@ -1,0 +1,33 @@
+.detail_cont {
+    background: #fff;
+    display: block;
+    padding: 30rpx 20rpx 100rpx 20rpx;
+    border-top: 1rpx solid #e5e5e5;
+    width: -webkit-calc(100% - 40rpx);
+    width: calc(100% - 40rpx);
+}
+
+.detail_cont .tit {
+    font-size: 30rpx;
+    color: #353535;
+    display: inline-block;
+    padding-bottom: 25rpx;
+}
+
+.details {
+    font-size: 30rpx;
+    color: #000;
+    width: 100%;
+    overflow: hidden;
+}
+
+.details image {
+    max-width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    display: block;
+}
+
+.wxParse-br {
+    height: 20rpx;
+}

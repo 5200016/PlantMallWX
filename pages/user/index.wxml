@@ -22,8 +22,8 @@
                     <image backgroundSize="cover" class="userinfo-avatar" src="{{userInfo.avatar}}"></image>
                     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
                     <view class="jisore">
-                        <image class="integral_img" src="../../static/image/user/integral.png"></image>
-                        {{score}} 积分
+                        <!--<image class="integral_img" src="../../static/image/user/integral.png"></image>-->
+                        <!--{{score}} 积分-->
                         <view class="tel-wrap" wx:if="{{hasPhone}}">手机号: {{userInfo.phone}}</view>
                         <button bindgetphonenumber="bindPhoneNumber" class="bind-tel" openType="getPhoneNumber"
                                 wx:if="{{!hasPhone}}">手机号绑定>
@@ -45,35 +45,35 @@
                 <view class="cont">
                     <view bindtap="jumpTo" class="navigator" data-url="../user/order/list/index?status=0">
                         <button class="but_t" formType="submit">
-                            <view class="count" wx:if="{{count_1}}">{{count_1}}</view>
+                            <!--<view class="count" wx:if="{{count_1}}">{{count_1}}</view>-->
                             <image src="../../static/image/order/wait_pay.png"></image>
                             <text>待付款</text>
                         </button>
                     </view>
                     <view bindtap="jumpTo" class="navigator" data-url="../user/order/list/index?status=1">
                         <button class="but_t" formType="submit">
-                            <view class="count" wx:if="{{count_2}}">{{count_2}}</view>
+                            <!--<view class="count" wx:if="{{count_2}}">{{count_2}}</view>-->
                             <image src="../../static/image/order/wait_send.png"></image>
                             <text>待发货</text>
                         </button>
                     </view>
                     <view bindtap="jumpTo" class="navigator" data-url="../user/order/list/index?status=2">
                         <button class="but_t" formType="submit">
-                            <view class="count" wx:if="{{count_3}}">{{count_3}}</view>
+                            <!--<view class="count" wx:if="{{count_3}}">{{count_3}}</view>-->
                             <image src="../../static/image/order/wait_receive.png"></image>
                             <text>待收货</text>
                         </button>
                     </view>
                     <view bindtap="jumpTo" class="navigator" data-url="../user/order/list/index?status=3">
                         <button class="but_t" formType="submit">
-                            <view class="count" wx:if="{{count_4}}">{{count_4}}</view>
+                            <!--<view class="count" wx:if="{{count_4}}">{{count_4}}</view>-->
                             <image src="../../static/image/order/wait_review.png"></image>
                             <text>待评价</text>
                         </button>
                     </view>
                     <view bindtap="jumpTo" class="navigator" data-url="../user/order/list/index?status=4">
                         <button class="but_t" formType="submit">
-                            <view class="count" wx:if="{{count_5}}">{{count_5}}</view>
+                            <!--<view class="count" wx:if="{{count_5}}">{{count_5}}</view>-->
                             <image src="../../static/image/order/wait_pay_out.png"></image>
                             <text>售后/退款</text>
                         </button>
@@ -108,24 +108,24 @@
                         </span>
                     </button>
                 </view>
-                <view bindtap="jumpTo" class="listli" data-url="../user/collection/index">
-                    <button class="but_ui" formType="submit">
-                        <image src="../../static/image/function/collection.png"></image>
-                        我的收藏
-                        <span>
-                            <image src="../../static/image/more.png"></image>
-                        </span>
-                    </button>
-                </view>
-                <view bindtap="jumpTo" class="listli" data-url="../user/coupon/index">
-                    <button class="but_ui" formType="submit">
-                        <image src="../../static/image/function/coupon.png"></image>
-                        优惠券
-                        <span>
-                            <image src="../../static/image/more.png"></image>
-                        </span>
-                    </button>
-                </view>
+                <!--<view bindtap="jumpTo" class="listli" data-url="../user/collection/index">-->
+                    <!--<button class="but_ui" formType="submit">-->
+                        <!--<image src="../../static/image/function/collection.png"></image>-->
+                        <!--我的收藏-->
+                        <!--<span>-->
+                            <!--<image src="../../static/image/more.png"></image>-->
+                        <!--</span>-->
+                    <!--</button>-->
+                <!--</view>-->
+                <!--<view bindtap="jumpTo" class="listli" data-url="../user/coupon/index">-->
+                    <!--<button class="but_ui" formType="submit">-->
+                        <!--<image src="../../static/image/function/coupon.png"></image>-->
+                        <!--优惠券-->
+                        <!--<span>-->
+                            <!--<image src="../../static/image/more.png"></image>-->
+                        <!--</span>-->
+                    <!--</button>-->
+                <!--</view>-->
                 <view bindtap="jumpTo" class="listli" data-url="../user/address/list/index">
                     <button class="but_ui" formType="submit">
                         <image src="../../static/image/function/address.png"></image>

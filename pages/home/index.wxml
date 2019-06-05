@@ -1,14 +1,17 @@
 <view>
     <loading bindchange="loadingChange" hidden="{{hidden}}">加载中...</loading>
 </view>
+<modal bindconfirm="modalConfirm" confirmText="确定" hidden="{{hiddenModal}}" noCancel="true"
+       title="{{modalTitle}}">
+</modal>
 
 <!-- 搜索框 -->
-<view bindtap="toSearchPage" class="search_wrapper">
-    <view class="search_text">
-        <image class="search_icon" src="../../static/image/search_icon.png"></image>
-        <text>请 输 入 商 品</text>
-    </view>
-</view>
+<!--<view bindtap="toSearchPage" class="search_wrapper">-->
+    <!--<view class="search_text">-->
+        <!--<image class="search_icon" src="../../static/image/search_icon.png"></image>-->
+        <!--<text>请 输 入 商 品</text>-->
+    <!--</view>-->
+<!--</view>-->
 
 <form bindsubmit="formsubmit" reportSubmit="report-submit">
     <view class="wecha-index" style="">
@@ -18,7 +21,7 @@
                     <swiper autoplay="true" bindload="imageLoad" class="swiper_2" duration="1000" indicatorDots="true" interval="3000" style="height:300rpx">
                         <swiper-item wx:for="{{topBanner}}" wx:for-index="index" wx:key="topBanner" wx:for-item="item">
                             <button class="but_ui" formType="submit">
-                                <image binderror="errImg3" bindload="bannerImageLoad" bindtap="clicktojump" class="nav_img" data-errorimg="{{index}}" data-errorimgs="{{index}}" data-link="{{item.path}}" src="{{url + item.image}}" style="height:{{pro.hhh}}px"></image>
+                                <image binderror="errImg3" bindload="bannerImageLoad" bindtap="clickToJump" class="nav_img" data-errorimg="{{index}}" data-errorimgs="{{index}}" data-path="{{item.path}}" src="{{url + item.image}}" style="height:{{pro.hhh}}px"></image>
                             </button>
                         </swiper-item>
                     </swiper>
@@ -33,8 +36,8 @@
                         <view class="clear" wx:if="{{index === 4}}"></view>
                         <view class="index_navimg_4">
                             <button class="but_ui" formType="submit">
-                                <image binderror="errImg3" bindload="middleImageLoad" bindtap="clicktojump" class="list_img" data-errorimg="{{index}}" data-errorimgs="{{index}}" data-link="{{item.path}}" src="{{url + item.icon}}" style="height:100rpx;"></image>
-                                <text bindtap="clicktojump" class="na_name" data-link="{{item.path}}" >{{item.name}}</text>
+                                <image binderror="errImg3" bindload="middleImageLoad" bindtap="clickToJump" class="list_img" data-errorimg="{{index}}" data-errorimgs="{{index}}" data-path="{{item.path}}" src="{{url + item.icon}}" style="height:100rpx;"></image>
+                                <text bindtap="clickToJump" class="na_name" data-path="{{item.path}}" >{{item.name}}</text>
                             </button>
                         </view>
                     </block>
@@ -52,16 +55,16 @@
                                 {{item.name}}
                             </view>
 
-                            <view class="more-module">
+                            <view class="more-module" bindtap="clickToJump" data-path="{{item.path}}">
                                     更多
                             </view>
                         </view>
                         <view wx:if="{{item.imageDisable == 1}}">
-                            <image binderror="errImg3" bindtap="clicktojump" class="classify-image" src="{{url}}{{item.image}}"></image>
+                            <image binderror="errImg3" bindtap="clickToJump" data-path="{{item.path}}" class="classify-image" src="{{url}}{{item.image}}"></image>
                         </view>
                         <view>
                             <view class="game_product back_kong" wx:for="{{item.products}}" wx:key="products" wx:for-index="productIndex" wx:for-item="productItem">
-                                <navigator hoverClass="none" url="../product/detail/index?id={{productItem.id}}">
+                                <navigator hoverClass="none" url="../product/detail/index?id={{productItem.id}}&classifyType={{item.classify.type}}">
                                     <button class="but_ui" formType="submit">
                                         <view class="pro_left">
                                             <image binderror="errImg" class="product_img" data-errorimg="{{productIndex}}" data-errorimgs="{{productIndex}}" src="{{url + productItem.image}}"></image>
@@ -69,7 +72,8 @@
                                         <view class="pro_two">
                                             <view class="pro_ma">{{productItem.name}}</view>
                                             <view class="pro_doller">
-                                                <text class="piece_twoty">￥ {{productItem.price}}</text>
+                                                <text class="piece_twoty" wx:if="{{item.classify.type == 0}}">￥ {{productItem.price}}</text>
+                                                <text class="piece_twoty" wx:if="{{item.classify.type == 1}}">￥ {{productItem.leasePrice}}</text>
                                                 <text class="num_twoty">已售 {{productItem.sale}} 件</text>
                                             </view>
                                         </view>

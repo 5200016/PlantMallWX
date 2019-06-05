@@ -1,6 +1,11 @@
 <view>
     <loading bindchange="loadingChange" hidden="{{hidden}}">加载中...</loading>
 </view>
+
+<modal bindconfirm="modalConfirm" confirmText="确定" hidden="{{hiddenModal}}" noCancel="true"
+       title="{{modalTitle}}">
+</modal>
+
 <form reportSubmit="report-submit">
     <view scrollY class="bgwhite" style="height:{{scrollHeight}}px;overflow:hidden;">
         <view class="tab-nav tab-nav2 flex">
@@ -33,8 +38,8 @@
                             <view class="pro-title">{{item.name}}</view>
                             <text>已售 {{item.sale}} 件</text>
                             <view class="price-add-image">
-                                <text class="pro-price" wx:if="{{classifyType === 0}}">{{item.price}} ￥</text>
-                                <text class="pro-price" wx:if="{{classifyType === 1}}">{{item.leasePrice}} ￥</text>
+                                <text class="pro-price" wx:if="{{classifyType === 0}}">￥ {{item.price}}</text>
+                                <text class="pro-price" wx:if="{{classifyType === 1}}">￥ {{item.leasePrice}}</text>
                                 <image catchtap="addShoppingCar"
                                        data-product-id="{{item.id}}"
                                        data-product-type="{{classifyType}}"

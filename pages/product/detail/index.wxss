@@ -210,7 +210,7 @@
 }
 
 .detail_bot .buy_btn {
-    width: 30%;
+    width: 53%;
     background: red;
     color: #fff;
     font-size: 36rpx;

@@ -50,6 +50,9 @@ Page({
         totalPrice: 0,
         totalNumber: 0,
 
+        hiddenLoginModal: false,
+        modalLoginTitle: "您尚未登录，请前往'我的'界面完成登录",
+
         hiddenModal: true,
         modalTitle: '',
         modalConfirmText: '',
@@ -443,8 +446,16 @@ Page({
         this.setData({
             shoppingCarList: shoppingCarList
         });
-    }
-    ,
+    },
+
+    /**
+     * 弹出框确定按钮（跳转至我的）
+     */
+    modalLoginConfirm: function(){
+        wx.switchTab({
+            url: '/pages/user/index'
+        })
+    },
 
     /**
      * 生命周期函数--监听页面加载
@@ -464,6 +475,17 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        let openid = wx.getStorageSync("openid"),
+            userId = wx.getStorageSync("userId");
+        if(!util.isEmpty(openid) && !util.isEmpty(userId)){
+            this.setData({
+                hiddenLoginModal: true
+            })
+        }
+        this.setData({
+            totalPrice: 0,
+            totalNumber: 0,
+        });
         let that = this;
         wx.getSystemInfo({
             success: function (t) {
