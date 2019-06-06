@@ -251,7 +251,8 @@
 
 .con_b .confirm_btn {
     border: 1rpx solid #ff8a00;
-    color: #ff8a00;
+    background: #ff8a00;
+    color: #ffffff;
 }
 
 .con_b .pay_btn {

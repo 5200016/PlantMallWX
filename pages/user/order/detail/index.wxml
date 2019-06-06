@@ -1,0 +1,52 @@
+<view>
+    <loading bindchange="loadingChange" hidden="{{hidden}}">加载中...</loading>
+</view>
+<view class="container">
+    <view class="top_bor"></view>
+    <view class="detail_top">
+        <view class="order_id">订单号：{{orderInfo.tradeNo}}
+            <text class="current" wx:if="{{info.status == 0}}">待付款</text>
+            <text class="current" wx:if="{{info.status == 1}}">待发货</text>
+            <text class="current" wx:if="{{info.status == 2}}">商家已发货</text>
+            <text class="current" wx:if="{{info.status == 3}}">交易成功</text>
+        </view>
+        <view>
+            <view class="sh_name">收货人：{{orderInfo.receiverAddress.name}}
+                <text>{{info.shouhuo_mobile}}</text>
+            </view>
+            <view class="sh_address">
+                <text>收货地址：</text>
+                <view class="content">{{orderInfo.receiverAddress.area}}  {{orderInfo.receiverAddress.address}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="order_cont">
+        <view class="cont_t" wx:for="{{orderInfo.orderProducts}}" wx:key="orderProducts"
+              wx:for-index="productIndex" wx:for-item="orderProducts">
+            <image binderror="errImg2" data-errorimg="{{index}}" data-errorimgs="{{productIndex}}"
+                   src="{{url}}{{orderProducts.product.image}}"></image>
+            <view class="con">
+                <view class="tit">{{orderProducts.product.name}}</view>
+                <view class="price" wx:if="{{orderInfo.type == 0}}">¥{{orderProducts.product.price || 0}}
+                    <text>×{{orderProducts.productNumber || 0}}</text>
+                </view>
+                <view class="price" wx:if="{{orderInfo.type == 1}}">¥{{orderProducts.product.leasePrice || 0}}
+                    <text>×{{orderProducts.productNumber || 0}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="detail_x">
+            <text>配送方式：快递</text>
+            <text>下单时间：{{orderInfo.createTime}}</text>
+            <text wx:if="{{orderInfo.description != null}}">买家留言：{{orderInfo.description}}</text>
+        </view>
+        <view class="detail_xx">
+            <view class="txt">运费
+                <text>免邮</text>
+            </view>
+            <view class="txt">总计
+                <span>¥{{orderInfo.price}}</span>
+            </view>
+        </view>
+    </view>
+</view>

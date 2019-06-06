@@ -21,7 +21,7 @@
         <view class="right-item active">
             <view wx:if="{{totalElements > 0}}">
                 <view class="order_cont" wx:for="{{orderList}}" wx:key="orderList" wx:for-item="item">
-                    <navigator hoverClass="none" url="../detail/index?ordersn={{item.ordersn}}">
+                    <navigator hoverClass="none" url="../detail/index?orderId={{item.id}}">
                         <view class="title">
                             <image src="../../../../static/image/order.png"></image>
                             <view class="tit" wx:if="{{item.type == 0}}">商品订单</view>
@@ -55,9 +55,9 @@
                             <view bindtap="waitOrderPay" class="btn pay_btn" data-id="{{item.id}}" data-price="{{item.price}}">支付</view>
                             <view bindtap="deleteBtn" class="btn cancel_btn" data-id="{{item.id}}">取消</view>
                         </view>
-                        <view wx:elif="{{item.status == 1}}">
-                            <view bindtap="deleteBtn" class="btn del_btn" data-ordersn="{{item.id}}">申请退款</view>
-                        </view>
+                        <!--<view wx:elif="{{item.status == 1}}">-->
+                            <!--<view bindtap="deleteBtn" class="btn del_btn" data-ordersn="{{item.id}}">申请退款</view>-->
+                        <!--</view>-->
                         <view wx:elif="{{item.status == 2}}">
                             <view>
                                 <view bindtap="confirmBtn" class="btn confirm_btn" data-id="{{item.id}}">
@@ -65,11 +65,11 @@
                                 </view>
                             </view>
                         </view>
-                        <view wx:if="{{item.status == 3}}">
-                            <navigator class="btn yellow" hoverClass="none"
-                                       url="../comment/index?orderId={{item.id}}">评价
-                            </navigator>
-                        </view>
+                        <!--<view wx:if="{{item.status == 3}}">-->
+                            <!--<navigator class="btn yellow" hoverClass="none"-->
+                                       <!--url="../comment/index?orderId={{item.id}}">评价-->
+                            <!--</navigator>-->
+                        <!--</view>-->
                     </view>
                 </view>
                 <view class="nodata_more" hidden="{{hiddenmore}}">没有更多啦～</view>

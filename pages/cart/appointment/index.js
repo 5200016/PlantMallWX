@@ -217,7 +217,7 @@ Page({
 
 
     /**
-     * 订单支付
+     * 确认预约
      */
     btnPay: function (){
         let url = '/appointment';
@@ -229,7 +229,9 @@ Page({
         };
         app.wxRequest('POST', url, data, (res) => {
             if (res.result) {
-                app.optionToast(res.msg);
+                wx.navigateTo({
+                    url: '/pages/service/list/index'
+                })
             } else {
                 app.optionToast(res.msg);
             }

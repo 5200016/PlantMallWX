@@ -8,7 +8,7 @@ Page({
         middleMenuList: [],   // 模块列表
         bottomMenuList: [],   // 模块列表
         url: app.globalData.HOST + '/',
-        hiddenModal: false,
+        hiddenModal: true,
         modalTitle: "您尚未登录，请前往'我的'界面完成登录",
 
         hhidden: !0,
@@ -140,7 +140,11 @@ Page({
     onShow: function () {
         let openid = wx.getStorageSync("openid"),
             userId = wx.getStorageSync("userId");
-        if(!util.isEmpty(openid) && !util.isEmpty(userId)){
+        if(util.isEmpty(openid) || util.isEmpty(userId)){
+            this.setData({
+                hiddenModal: false
+            })
+        }else {
             this.setData({
                 hiddenModal: true
             })

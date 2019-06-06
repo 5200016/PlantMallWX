@@ -45,6 +45,25 @@ Page({
         });
     },
 
+    // 滚动事件，下滑加载页面
+    lower: function () {
+        let pageNum = this.data.pageNum;
+        if(++pageNum <= this.data.totalPages){
+            this.setData({
+                pageNum: pageNum
+            });
+            this.getTaskList();
+        }
+    },
+    upper: function() {
+        this.setData({
+            pageNum: 1,
+            totalPages: 0,
+            orderList: []
+        });
+        this.getTaskList();
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */

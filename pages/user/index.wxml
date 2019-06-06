@@ -90,7 +90,7 @@
                         </span>
                     </button>
                 </view>
-                <view bindtap="jumpTo" class="listli" data-url="../user/service_task/index">
+                <view bindtap="jumpTo" class="listli" data-url="../user/service_task/index" wx:if="{{userInfo.maintenanceId != null}}">
                     <button class="but_ui" formType="submit" >
                         <image src="../../static/image/function/task.png"></image>
                         养护任务

@@ -15,7 +15,7 @@ Page({
         totalElements: 0,
         keyWordProd: '',
         hidden: false,
-        hiddenModal: false,
+        hiddenModal: true,
         modalTitle: "您尚未登录，请前往'我的'界面完成登录",
 
         // 热门排序
@@ -378,7 +378,11 @@ Page({
     onLoad: function() {
         let openid = wx.getStorageSync("openid"),
             userId = wx.getStorageSync("userId");
-        if(!util.isEmpty(openid) && !util.isEmpty(userId)){
+        if(util.isEmpty(openid) || util.isEmpty(userId)){
+            this.setData({
+                hiddenModal: false
+            })
+        }else {
             this.setData({
                 hiddenModal: true
             })

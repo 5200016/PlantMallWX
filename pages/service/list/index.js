@@ -29,16 +29,14 @@ Page({
      */
     tabFunction: function (t) {
         let lastCurrentTab = this.data.currentTab, currentTab = t.target.dataset.current;
-        if(currentTab != lastCurrentTab){
-            this.setData({
-                currentTab: currentTab,
-                pageNum: 1,
-                pageSize: 5,
-                totalPages: 0,
-                totalElements: 0,
-                appointmentList: [],
-            })
-        }
+        this.setData({
+            currentTab: currentTab,
+            pageNum: 1,
+            pageSize: 5,
+            totalPages: 0,
+            totalElements: 0,
+            appointmentList: [],
+        })
         this.getAppointmentLis(currentTab);
     },
 

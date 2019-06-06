@@ -183,6 +183,7 @@ Page({
     },
 
     waitOrderPay: function(e){
+        let that = this;
         let url = '/pay/wait_pay';
         let data = {
             openid: wx.getStorageSync("openid"),
@@ -196,13 +197,10 @@ Page({
                     package: res.data.package,
                     signType: res.data.signType,
                     paySign: res.data.paySign,
-                    success: function(e) {
-                        if("requestPayment:ok" == e.errMsg){
-                            console.log("支付成功")
+                    success: function(result) {
+                        if("requestPayment:ok" == result.errMsg){
+                            that.updateWaitPayOrder(e.currentTarget.dataset.id, res.data.payNo)
                         }
-                    },
-                    fail: function() {
-                        console.log("支付失败")
                     }
                 });
             } else {
@@ -213,8 +211,28 @@ Page({
         });
     },
 
-    updateWaitPayOrder: function(){
-
+    updateWaitPayOrder: function(id, payNo){
+        let url = '/pay/wait_pay';
+        let data = {
+            id: id,
+            payNo: payNo
+        };
+        app.wxRequest('PUT', url, data, (res) => {
+            if (res.result) {
+                this.setData({
+                    pageNum: 1,
+                    pageSize: 5,
+                    totalPages: 0,
+                    totalElements: 0,
+                    orderList: []
+                });
+                this.getOrderList();
+            } else {
+                app.optionToast(res.msg);
+            }
+        }, (err) => {
+            console.log(err.data);
+        });
     },
 
     waitOrderCancel:function(id){
