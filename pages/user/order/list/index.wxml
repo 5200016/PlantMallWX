@@ -65,11 +65,11 @@
                                 </view>
                             </view>
                         </view>
-                        <!--<view wx:if="{{item.status == 3}}">-->
-                            <!--<navigator class="btn yellow" hoverClass="none"-->
-                                       <!--url="../comment/index?orderId={{item.id}}">评价-->
-                            <!--</navigator>-->
-                        <!--</view>-->
+                        <view wx:if="{{item.status == 3}}">
+                            <navigator class="btn review_btn" hoverClass="none"
+                                       url="../comment/index?orderId={{item.id}}">去评价
+                            </navigator>
+                        </view>
                     </view>
                 </view>
                 <view class="nodata_more" hidden="{{hiddenmore}}">没有更多啦～</view>

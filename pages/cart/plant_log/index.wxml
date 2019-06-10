@@ -3,6 +3,15 @@
 </view>
 <form bindsubmit="formsubmit" reportSubmit="report-submit">
     <scroll-view bindscrolltolower="lower" enableBackToTop="true" scrollY="true" style="height:{{scrollHeight}}px;">
+
+        <!-- 搜索框 -->
+        <view class="search">
+            <view class="bg">
+                <input bindconfirm="search" bindfocus="changeBg" bindinput="keyInput" class="{{focus?'search-bgc':''}}" confirmType="search" value="{{keyWords}}"></input>
+            </view>
+            <image class="zoom" src="../../../static/image/search_icon.png" wx:if="{{focus}}"></image>
+        </view>
+
         <image class="module-image" binderror="errImg"  mode="scaleToFill" src="{{url}}{{plantLogModule.image}}"></image>
         <view class="m_prolist_cont">
             <view wx:if="{{totalElements > 0}}">

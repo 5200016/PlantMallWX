@@ -32,6 +32,7 @@
 .content{
     margin: 0rpx 10rpx;
     padding-top: 17rpx;
+    padding-bottom:17rpx;
     width:76%;
 }
 

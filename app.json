@@ -14,12 +14,13 @@
     "pages/cart/appointment/index",
     "pages/user/order/list/index",
     "pages/user/plant_service/index",
-    "pages/cart/plant_log/index",
     "pages/user/plant_service/detail/index",
     "pages/cart/index",
     "pages/user/service_task/index",
     "pages/cart/plant_log/detail/index",
-    "pages/user/order/detail/index"
+    "pages/user/order/detail/index",
+    "pages/user/order/comment/index",
+    "pages/cart/plant_log/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

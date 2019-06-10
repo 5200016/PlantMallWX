@@ -9,26 +9,32 @@ Page({
         url: app.globalData.HOST + '/',
         hidden: false,
         pageNum: 1,
-        pageSize: 5,
+        pageSize: 9,
         totalPages: 0,
         totalElements: 0,
         plantLogList: [],
         plantLogModule: {},
         scrollHeight: 0,
+        focus: false,
+        keyWords: ''
     },
 
     getPlantLogList: function(){
         let url = '/plant_log';
         let data = {
-            name: '',
+            name: this.data.keyWords,
             pageNum: this.data.pageNum - 1,
             pageSize: this.data.pageSize,
         };
         app.wxRequest('GET', url, data, (res) => {
             if (res.result) {
+                let data = this.data.plantLogList;
+                for (let i = 0; i < res.data.content.length; i++){
+                    data.push(res.data.content[i]);
+                }
                 this.setData({
                     hidden: true,
-                    plantLogList: res.data.content,
+                    plantLogList: data,
                     totalPages: res.data.totalPages,
                     totalElements: res.data.totalElements
                 });
@@ -59,6 +65,51 @@ Page({
             console.log(err.data);
 
         });
+    },
+
+    // 滚动事件，下滑加载页面
+    lower: function () {
+        let pageNum = this.data.pageNum;
+        if(++pageNum <= this.data.totalPages){
+            this.setData({
+                pageNum: pageNum
+            });
+            this.getPlantLogList();
+        }
+    },
+    upper: function() {
+        this.setData({
+            hidden: false,
+            pageNum: 1,
+            pageSize: 9,
+            totalPages: 0,
+            totalElements: 0,
+            plantLogList: [],
+        });
+        this.getPlantLogList();
+    },
+
+    changeBg: function() {
+        this.setData({
+            focus: true
+        });
+    },
+    keyInput: function(e) {
+        this.setData({
+            keyWords: e.detail.value
+        });
+    },
+
+    search: function() {
+        this.setData({
+            hidden: false,
+            pageNum: 1,
+            pageSize: 9,
+            totalPages: 0,
+            totalElements: 0,
+            plantLogList: [],
+        });
+        this.getPlantLogList();
     },
 
     /**

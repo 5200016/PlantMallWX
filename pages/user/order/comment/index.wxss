@@ -1,0 +1,159 @@
+@import "../../../../public/wxss/index.wxss";
+
+@import "../../../../utils/wxParse/wxParse.wxss";
+
+.header {
+    padding: 20rpx;
+    border-bottom: 1rpx solid #e5e5e5;
+    border-top: 1rpx solid #e5e5e5;
+}
+
+.ro_ping {
+    background: #fff;
+    width: 100%;
+    margin-bottom: 10rpx;
+}
+
+.ro_title {
+    padding-left: 20rpx;
+    width: calc(100% - 100rpx);
+}
+
+.ro_title .j_name {
+    font-size: 30rpx;
+    line-height: 80rpx;
+    padding-bottom: 10rpx;
+    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ro_title .attr {
+    line-height: 30rpx;
+}
+
+.ro_title .attr text {
+    color: #888;
+    font-size: 24rpx;
+    padding-right: 30rpx;
+}
+
+.sxing {
+    width: 60rpx;
+    height: 56rpx;
+    display: block;
+    margin-left: 30rpx;
+    margin-top: 32rpx;
+    float: left;
+}
+
+.ro_nice {
+    border-bottom: 1rpx solid #e5e5e5;
+}
+
+.star_wrap {
+    height: 120rpx;
+    justify-content: center;
+    border-bottom: 1rpx solid #e5e5e5;
+}
+
+.star_wrap .score {
+    font-size: 24rpx;
+    line-height: 120rpx;
+}
+
+.star_wrap .score text {
+    font-size: 36rpx;
+    color: #fdb120;
+    padding: 0 6rpx;
+}
+
+.art text {
+    padding-left: 20rpx;
+    font-size: 28rpx;
+    line-height: 40rpx;
+    display: block;
+}
+
+.shuru {
+    width: 100%;
+    height: 200rpx;
+    font-size: 28rpx;
+    padding: 20rpx;
+    box-sizing: border-box;
+}
+
+.reli {
+    position: relative;
+    height: 380rpx;
+}
+
+.scaa {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.fabu {
+    width: 90%;
+    margin: 40rpx auto;
+    background: #ff8a00;
+    color: #fff;
+    font-size: 32rpx;
+}
+
+.my_op {
+    height: 120rpx;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.butt_op {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 0;
+    padding: 0;
+    background: transparent;
+    border: 1rpx dashed #e5e5e5;
+    margin: 30rpx 0 0 20rpx;
+}
+
+.butt_op image {
+    display: block;
+    width: 50rpx;
+    height: 50rpx;
+    margin: 25rpx auto 0;
+}
+
+.butt_op view {
+    line-height: 45rpx;
+    text-align: center;
+    color: #d1d1d1;
+    font-size: 24rpx;
+}
+
+.img-wrap {
+    position: relative;
+    width: 120rpx;
+    height: 120rpx;
+    display: block;
+    margin-left: 30rpx;
+    margin: 30rpx 0 0 20rpx;
+}
+
+.delete {
+    width: 40rpx;
+    height: 40rpx;
+    position: absolute;
+    top: -10rpx;
+    right: -10rpx;
+}
+
+.shop_logo {
+    display: block;
+    width: 80rpx;
+    height: 80rpx;
+}

@@ -261,6 +261,13 @@
     color: #fff;
 }
 
+.con_b .review_btn {
+    border: 1rpx solid #ff8a00;
+    background: #ff8a00;
+    color: #fff;
+}
+
+
 .con_b .pay_btn:hover {
     border: 1rpx solid #ff8a00;
     background: #ff8a00;

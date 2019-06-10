@@ -1,0 +1,22 @@
+<view>
+    <loading bindchange="loadingChange" hidden="{{hidden}}">加载中...</loading>
+</view>
+<view class="ro_ping" wx:for="{{orderInfo.orderProducts}}" wx:key="orderProducts"
+      wx:for-index="productIndex" wx:for-item="orderProducts">
+    <view class="header flex">
+        <image binderror="errImg2" class="shop_logo" data-errorimg="{{pindex}}" src="{{url}}{{orderProducts.product.image}}"></image>
+        <view class="ro_title">
+            <view class="j_name">{{orderProducts.product.name}}</view>
+        </view>
+    </view>
+    <view class="ro_nice">
+        <view class="reli">
+            <textarea bindinput="bindKeyInput"
+                      class="shuru"
+                      data-index="{{productIndex}}"
+                      maxlength="500"
+                      placeholder="这款商品如何，快来评价下吧~"></textarea>
+        </view>
+    </view>
+</view>
+<button bindtap="save" class="fabu">发布</button>

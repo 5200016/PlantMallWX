@@ -110,6 +110,17 @@ Page({
      * 订单支付
      */
     btnPay: function (){
+        if(util.isEmpty(this.data.addressId)){
+            wx.showToast({
+                title: "请选择地址",
+                icon: 'none'
+            });
+            setTimeout(() => {
+                wx.hideToast()
+
+            }, 1500)
+            return;
+        }
         let that = this;
         let url = '/pay';
         let data = {
@@ -189,12 +200,16 @@ Page({
         }
         orderPayList.lease.number = leaseNumber;
 
+        let addressId = options.addressId;
+        if(util.isEmpty(addressId)){
+            addressId = null;
+        }
 
         this.setData({
             buyType: 'buy',
             hidden: true,
             orderPayList: orderPayList,
-            addressId: options.addressId,
+            addressId: addressId,
             payPrice: leaseTotalPrice + sellTotalPrice
         });
 
