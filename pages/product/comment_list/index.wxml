@@ -1,0 +1,21 @@
+<view>
+    <loading bindchange="loadingChange" hidden="{{hidden}}">加载中...</loading>
+</view>
+<view class="top_bor"></view>
+<scroll-view scrollY bindscrolltolower="lower" class="pro_detail" style="height:{{scrollHeight}}px" wx:if="{{!errpagelist}}">
+    <view class="list">
+        <view class="item" wx:for="{{commentList}}" wx:key="commentList" wx:for-index="index">
+            <view class="user_info clearfix">
+                <image binderror="erroruserlogo" class="user_logo" data-userindex="{{index}}" src="{{item.avatar}}"></image>
+                <view class="user_name">{{item.nickname}}</view>
+            </view>
+            <view class="content">{{item.content}}</view>
+            <view class="content_img clearfix">
+                <image lazyLoad binderror="errorCommentImg" bindtap="previewImg" data-indexin="{{index2}}" data-indexout="{{index}}" src="{{pitem}}" wx:for="{{item.comment_pic}}" wx:for-index="index2" wx:for-item="pitem"></image>
+            </view>
+            <view class="footer clearfix">
+                <view class="date">{{item.createTime}}</view>
+            </view>
+        </view>
+    </view>
+</scroll-view>

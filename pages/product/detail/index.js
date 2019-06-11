@@ -19,6 +19,8 @@ Page({
         inventory: 0,
         classifyType: null,
         phone: '',
+        count: 0,
+        commentInfo: {},
 
         num1: [1, 2, 3, 4, 5],
         num2: [1, 2, 3],
@@ -196,6 +198,25 @@ Page({
         });
     },
 
+    getReviewList: function(id){
+        let url = '/review';
+        let data = {
+            id: id
+        };
+        app.wxRequest('GET', url, data, (res) => {
+            if (res.result) {
+                this.setData({
+                    count: res.data.length,
+                    commentInfo: res.data[0]
+                })
+            } else {
+                app.optionToast(res.msg);
+            }
+        }, (err) => {
+            console.log(err.data);
+        });
+    },
+
     /**
      * 打电话
      */
@@ -222,6 +243,7 @@ Page({
             scrollHeight: wx.getStorageSync("scrollHeight"),
             phone: wx.getStorageSync("phone")
         });
+        this.getReviewList(options.id);
         this.getProductById(options.id);
     },
 

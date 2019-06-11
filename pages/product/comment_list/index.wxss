@@ -1,0 +1,136 @@
+@import "../../../public/wxss/index.wxss";
+
+@import "../../../utils/wxParse/wxParse.wxss";
+
+.header {
+    height: 170rpx;
+    border-bottom: 1rpx solid #e5e5e5;
+    padding: 20rpx 30rpx;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.header .title {
+    height: 30rpx;
+    margin-top: 10rpx;
+}
+
+.title view {
+    font-size: 30rpx;
+    float: left;
+    line-height: 30rpx;
+}
+
+.title image {
+    width: 30rpx;
+    height: 28rpx;
+    margin-left: 10rpx;
+    float: left;
+    display: block;
+}
+
+.switch {
+    height: 50rpx;
+    margin-top: 25rpx;
+}
+
+.btn {
+    float: left;
+    margin-right: 20rpx;
+    min-width: 100rpx;
+    line-height: 50rpx;
+    text-align: center;
+    color: #353535;
+    background: #ffecd6;
+    border-radius: 4rpx;
+    font-size: 26rpx;
+    padding: 0 16rpx;
+    box-sizing: border-box;
+}
+
+.btn.active {
+    background: #ff8a00;
+    color: #fff;
+}
+
+.list {
+    background: #fff;
+    padding: 0 20rpx 10rpx;
+    margin-bottom: 60rpx;
+    border-bottom: 1rpx solid #e5e5e5;
+}
+
+.item {
+    border-bottom: 1rpx solid #e5e5e5;
+    padding: 0 10rpx;
+}
+
+.item:last-child {
+    border-bottom: none;
+}
+
+.user_info {
+    height: 50rpx;
+    padding-top: 26rpx;
+}
+
+.user_logo {
+    width: 50rpx;
+    height: 50rpx;
+    border-radius: 50%;
+    float: left;
+}
+
+.user_name {
+    float: left;
+    font-size: 28rpx;
+    line-height: 50rpx;
+    padding: 0 10rpx;
+}
+
+.stars {
+    float: right;
+    height: 28rpx;
+    margin: 11rpx 0;
+}
+
+.stars image {
+    float: left;
+    height: 24rpx;
+    width: 26rpx;
+    margin: 0 2rpx;
+}
+
+.content {
+    font-size: 26rpx;
+    color: #353535;
+    line-height: 40rpx;
+    margin: 10rpx 0;
+    text-align: justify;
+}
+
+.content_img image {
+    width: 220rpx;
+    height: 220rpx;
+    display: block;
+    float: left;
+    margin: 0 10rpx 10rpx 0;
+}
+
+.footer {
+    padding: 0 0 15rpx;
+    color: #888;
+    font-size: 24rpx;
+}
+
+.footer .date {
+    float: left;
+    line-height: 40rpx;
+    margin-right: 20rpx;
+}
+
+.footer .attr {
+    float: left;
+    line-height: 40rpx;
+    margin-right: 10rpx;
+}

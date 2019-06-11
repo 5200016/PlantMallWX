@@ -20,7 +20,8 @@
     "pages/cart/plant_log/detail/index",
     "pages/user/order/detail/index",
     "pages/user/order/comment/index",
-    "pages/cart/plant_log/index"
+    "pages/cart/plant_log/index",
+    "pages/product/comment_list/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

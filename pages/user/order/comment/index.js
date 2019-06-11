@@ -80,7 +80,6 @@ Page({
             console.log(err.data);
 
         });
-        console.log(reviewInfo);
     },
 
     /**
