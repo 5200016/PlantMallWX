@@ -6,38 +6,39 @@ Page({
      * 页面的初始数据
      */
     data: {
-        url: app.globalData.HOST + '/',
         hidden: false,
+        currentTab: 0,
         pageNum: 1,
-        pageSize: 8,
+        pageSize: 5,
         totalPages: 0,
         totalElements: 0,
-        commentList: [],
+        couponList: [],
         scrollHeight: 0,
-        id: null
+        hiddenMore: true,
     },
 
     /**
-     * 获取评价列表
-     * @param id
+     * 获取优惠券列表
      */
-    getReviewList: function(id){
-        let url = '/review/page';
+    getCouponList: function(status){
+        let url = '/coupon/my';
         let data = {
-            id: id,
+            status: status,
+            userId: wx.getStorageSync("userId"),
             pageNum: this.data.pageNum - 1,
             pageSize: this.data.pageSize
         };
         app.wxRequest('GET', url, data, (res) => {
             if (res.result) {
-                let data = this.data.commentList;
+                let data = this.data.couponList;
                 for (let i = 0; i < res.data.content.length; i++){
-                    res.data.content[i].createTime = util.formatTime(new Date(res.data.content[i].createTime));
-                    data.push(res.data.content[i]);
+                    res.data.content[i].coupon.startTime = util.formatTimeYMD(new Date(res.data.content[i].coupon.startTime));
+                    res.data.content[i].coupon.endTime = util.formatTimeYMD(new Date(res.data.content[i].coupon.endTime));
+                    data.push(res.data.content[i].coupon);
                 }
                 this.setData({
                     hidden: true,
-                    commentList: data,
+                    couponList: data,
                     totalPages: res.data.totalPages,
                     totalElements: res.data.totalElements
                 });
@@ -49,23 +50,44 @@ Page({
         });
     },
 
+    // 切换选项卡
+    tabFun: function(e) {
+        let currentTab = this.data.currentTab,
+            current = e.target.dataset.current;
+        if(current != currentTab){
+            this.setData({
+                currentTab: current,
+                pageNum: 1,
+                pageSize: 5,
+                totalPages: 0,
+                totalElements: 0,
+                couponList: []
+            });
+            this.getCouponList(current);
+        }
+    },
+
     // 滚动事件，下滑加载页面
     lower: function () {
         let pageNum = this.data.pageNum;
-        if(++pageNum <= this.data.totalPages){
+        if (++pageNum <= this.data.totalPages) {
             this.setData({
                 pageNum: pageNum
             });
-            this.getReviewList(this.data.id);
+            this.getCouponList();
+        } else {
+            this.setData({
+                hiddenMore: false
+            })
         }
     },
-    upper: function() {
+    upper: function () {
         this.setData({
             pageNum: 1,
             totalPages: 0,
-            commentList: []
+            couponList: []
         });
-        this.getReviewList(this.data.id);
+        this.getCouponList();
     },
 
     /**
@@ -80,15 +102,7 @@ Page({
                 });
             }
         });
-
-        let id = options.id;
-        if(!util.isEmpty(id)){
-            this.setData({
-                id: id
-            });
-            this.getReviewList(id);
-        }
-
+        this.getCouponList(this.data.currentTab);
     },
 
     /**

@@ -117,15 +117,15 @@
                         <!--</span>-->
                     <!--</button>-->
                 <!--</view>-->
-                <!--<view bindtap="jumpTo" class="listli" data-url="../user/coupon/index">-->
-                    <!--<button class="but_ui" formType="submit">-->
-                        <!--<image src="../../static/image/function/coupon.png"></image>-->
-                        <!--优惠券-->
-                        <!--<span>-->
-                            <!--<image src="../../static/image/more.png"></image>-->
-                        <!--</span>-->
-                    <!--</button>-->
-                <!--</view>-->
+                <view bindtap="jumpTo" class="listli" data-url="../user/coupon/index">
+                    <button class="but_ui" formType="submit">
+                        <image src="../../static/image/function/coupon.png"></image>
+                        优惠券
+                        <span>
+                            <image src="../../static/image/more.png"></image>
+                        </span>
+                    </button>
+                </view>
                 <view bindtap="jumpTo" class="listli" data-url="../user/address/list/index">
                     <button class="but_ui" formType="submit">
                         <image src="../../static/image/function/address.png"></image>

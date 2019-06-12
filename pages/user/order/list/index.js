@@ -21,8 +21,7 @@ Page({
         modalCancelText: '',
         modalAct: '',
         modalOrderId: null,
-
-        hiddenmore: !0,
+        hiddenMore: true,
 
         modaltitle: "",
         modalconfirmtext: "",
@@ -171,6 +170,10 @@ Page({
                 pageNum: pageNum
             });
             this.getOrderList();
+        }else {
+            this.setData({
+                hiddenMore: false
+            })
         }
     },
     upper: function() {

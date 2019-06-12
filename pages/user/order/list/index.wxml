@@ -72,9 +72,9 @@
                         </view>
                     </view>
                 </view>
-                <view class="nodata_more" hidden="{{hiddenmore}}">没有更多啦～</view>
+                <view class="nodata_more" hidden="{{hiddenMore}}">没有更多啦～</view>
             </view>
-            <view class="weui-loadmore weui-loadmore_line {{count>0?'dn':'db'}}" wx:else>
+            <view class="weui-loadmore weui-loadmore_line {{totalElements > 0 ? 'dn' : 'db'}}" wx:else>
                 <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
             </view>
             <view bindchange="loadingChange" class="page_hd" hidden="{{hidden}}">

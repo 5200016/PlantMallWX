@@ -1,0 +1,31 @@
+<view>
+    <loading bindchange="loadingChange" hidden="{{hidden}}">加载中...</loading>
+</view>
+<scroll-view scrollY bindscrolltolower="lower" style="height:{{scrollHeight}}px">
+    <view class="top_bor"></view>
+    <view class="list-wrap" wx:if="{{totalElements}}">
+        <view class="list-item" wx:for="{{couponList}}" wx:key="couponList">
+            <view class="list-left">
+                <view class="title">{{item.name}}
+                    <view class="residue">仅剩{{item.quantity - item.getNumber}}张</view>
+                </view>
+                <view class="intro">每人限领{{item.limit}}张</view>
+                <view class="intro">满{{item.moneyOff}}元可用</view>
+                <view class="shop">{{item.startTime}} ~ {{item.endTime}}</view>
+            </view>
+            <view class="list-center bg-w"></view>
+            <view bindtap="getCoupon" class="list-right bg-y" data-id="{{item.id}}">
+                <view class="price" style="{{item.ishave?'color:#fff':''}}">￥{{item.value}}</view>
+                <view class="status">点击领取</view>
+            </view>
+        </view>
+        <view class="nodata_more" hidden="{{hiddenmore}}">没有更多啦～</view>
+    </view>
+    <view class="weui-loadmore weui-loadmore_line {{totalElements > 0 ? 'dn' : 'db'}}" wx:else>
+        <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+    </view>
+    <view bindchange="loadingChange" class="page_hd" hidden="{{hidden}}">
+        <view class="page_hd-loading"></view>
+        <view class="page_hd_tips">加载更多</view>
+    </view>
+</scroll-view>

@@ -1,0 +1,55 @@
+<view>
+    <loading bindchange="loadingChange" hidden="{{hidden}}">加载中...</loading>
+</view>
+<scroll-view scrollY bindscrolltolower="lower" style="height:{{scrollHeight}}px">
+    <view class="top_bor"></view>
+    <view class="tab-nav">
+        <view class="txt">
+            <text bindtap="tabFun" class="{{currentTab == 0?'active':''}}" data-current="0">未使用</text>
+        </view>
+        <view class="txt">
+            <text bindtap="tabFun" class="{{currentTab == 1?'active':''}}" data-current="1">已使用</text>
+        </view>
+        <view class="txt">
+            <text bindtap="tabFun" class="{{currentTab == 2?'active':''}}" data-current="2">已过期</text>
+        </view>
+    </view>
+    <view class="list-wrap" wx:if="{{totalElements > 0}}">
+        <view class="list-item" wx:for="{{couponList}}">
+            <view class="list-center">
+                <view class="list-up">
+                    <view class="title">
+                        {{item.name}}
+                        <text class="gray">{{currentTab == 1 ? '(已使用)' : ''}}{{currentTab == 2 ? '(已过期)' : ''}}</text>
+                    </view>
+                    <view class="intro">{{item.intro}}</view>
+                    <view class="deadline">使用时间：{{item.startTime}} ~ {{item.endTime}}</view>
+                </view>
+                <view class="line-wrap">
+                    <view class="line-left"></view>
+                    <view class="line"></view>
+                    <view class="line-right"></view>
+                </view>
+                <view class="shop-wrap">
+                    <view class="shop">
+                        <view class="limit">满{{item.moneyOff}}元可用</view>
+                        <view wx:if="{{item.c_arr.length||item.p_arr.length||item.tg_arr.length}}">
+                            <button bindtap="checkProduct" data-index="{{index}}" type="default">{{item.c_arr.length?'查看指定分类':''}}{{item.p_arr.length?'查看指定商品':''}}{{item.tg_arr.length?'查看指定团购':''}}</button>
+                        </view>
+                    </view>
+                    <view class="value" style="color:{{currentTab=='0'?'#febd2d':'#888'}};">
+                        <text>￥{{item.value}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="nodata_more" hidden="{{hiddenMore}}">没有更多啦～</view>
+    </view>
+    <view class="weui-loadmore weui-loadmore_line {{totalElements > 0 ? 'dn' : 'db'}}" wx:else>
+        <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+    </view>
+    <view bindchange="loadingChange" class="page_hd" hidden="{{hidden}}">
+        <view class="page_hd-loading"></view>
+        <view class="page_hd_tips">加载更多</view>
+    </view>
+</scroll-view>
