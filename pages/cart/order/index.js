@@ -15,6 +15,9 @@ Page({
         payPrice: 0,
         addressId: null,
         url: app.globalData.HOST + '/',
+        animationData: {},
+        showModalStatus: false,
+        couponList: [],
 
         modaltitle: "",
         addrinfo: [],
@@ -46,13 +49,12 @@ Page({
         youhui: {},
         cuxao: [],
         carts: [],
-        animationData: {},
+
         canPay: !1,
         doPaying: !1,
         hasUserInfo: !1,
         buyType: "",
-        showModalStatus: !1,
-        couponList: [],
+
         group: !1,
         shopId: 0,
         singleCoupon: "",
@@ -180,6 +182,83 @@ Page({
         }, (err) => {
             console.log(err.data);
         });
+    },
+
+    selectCoupon: function(e){
+        let id = e.currentTarget.dataset.id;
+
+        let animation = wx.createAnimation({
+            duration: 200,
+            timingFunction: "linear",
+            delay: 0
+        });
+        animation.translateY(300).step(), this.setData({
+            animationData: animation.export()
+        }), setTimeout(function () {
+            animation.translateY(0).step(), this.setData({
+                animationData: animation,
+                showModalStatus: false
+            });
+        }.bind(this), 200);
+    },
+
+    setModalStatus: function (e) {
+        this.setData({
+            couponList: []
+        });
+        let url = '/coupon/order';
+        let data = {
+            userId: wx.getStorageSync("userId")
+        };
+        app.wxRequest('GET', url, data, (res) => {
+            if (res.result) {
+                let data = this.data.couponList;
+                for (let i = 0; i < res.data.length; i++){
+                    res.data[i].coupon.startTime = util.formatTimeYMD(new Date(res.data[i].coupon.startTime));
+                    res.data[i].coupon.endTime = util.formatTimeYMD(new Date(res.data[i].coupon.endTime));
+                    data.push(res.data[i].coupon);
+                }
+                this.setData({
+                    couponList: data
+                });
+            } else {
+                app.optionToast(res.msg);
+            }
+        }, (err) => {
+            console.log(err.data);
+        });
+
+        let animation = wx.createAnimation({
+            duration: 200,
+            timingFunction: "linear",
+            delay: 0
+        });
+        animation.translateY(300).step(), this.setData({
+            animationData: animation.export()
+        }), 1 == e.currentTarget.dataset.status && this.setData({
+            showModalStatus: true
+        }), setTimeout(function () {
+            animation.translateY(0).step(), this.setData({
+                animationData: animation
+            }), 0 == e.currentTarget.dataset.status && this.setData({
+                showModalStatus: false
+            });
+        }.bind(this), 200);
+    },
+    hideCoupon: function (e) {
+        let animation = wx.createAnimation({
+            duration: 200,
+            timingFunction: "linear",
+            delay: 0
+        });
+        animation.translateY(300).step(), this.setData({
+            animationData: animation.export()
+        }), setTimeout(function () {
+            animation.translateY(0).step(), this.setData({
+                animationData: animation,
+                showModalStatus: false
+            });
+        }.bind(this), 200);
     },
 
     /**

@@ -72,13 +72,13 @@
             </view>
             <view class="clear"></view>
 
-            <!--<view bindtap="setModalStatus" class="plea_youhui" data-status="1">-->
-                <!--<text>选择优惠券</text>-->
-                <!--<view class="coupon">{{singleCoupon}}</view>-->
-                <!--<view class="choose_btn">-->
-                    <!--<image src="../../../static/image/more.png"></image>-->
-                <!--</view>-->
-            <!--</view>-->
+            <view bindtap="setModalStatus" class="plea_youhui" data-status="1">
+                <text>选择优惠券</text>
+                <view class="coupon">{{singleCoupon}}</view>
+                <view class="choose_btn">
+                    <image src="../../../static/image/more.png"></image>
+                </view>
+            </view>
 
             <view class="liuyan">
                 <text>留言</text>
@@ -128,13 +128,13 @@
             </view>
             <view class="clear"></view>
 
-            <!--<view bindtap="setModalStatus" class="plea_youhui" data-status="1">-->
-                <!--<text>选择优惠券</text>-->
-                <!--<view class="coupon">{{singleCoupon}}</view>-->
-                <!--<view class="choose_btn">-->
-                    <!--<image src="../../../static/image/more.png"></image>-->
-                <!--</view>-->
-            <!--</view>-->
+            <view bindtap="setModalStatus" class="plea_youhui" data-status="1">
+                <text>选择优惠券</text>
+                <view class="coupon">{{singleCoupon}}</view>
+                <view class="choose_btn">
+                    <image src="../../../static/image/more.png"></image>
+                </view>
+            </view>
 
             <view class="liuyan">
                 <text>留言</text>
@@ -160,5 +160,39 @@
                 <button formType="submit">支付</button>
             </view>
         </form>
+    </view>
+</view>
+<view class="black" data-status="0" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="set_hui" wx:if="{{showModalStatus}}">
+    <view bindtap="hideCoupon" class="coupon-bg" data-status="0"></view>
+    <view class="hui_list">
+        <view bindtap="hideCoupon" class="icon-wrap" data-status="0">
+            <icon class="close_icon" data-status="0" size="15" type="clear"></icon>
+        </view>
+        <text class="hui_title">
+            <text bindtap="setYouhui" class="dian"></text>选择优惠券</text>
+        <scroll-view scrollY style="height:500rpx;" wx:if="{{couponList.length}}">
+            <view class="list-item" wx:for="{{couponList}}" wx:key="couponList">
+                <view class="list-center" bindtap="selectCoupon" data-id="{{item.id}}">
+                    <view class="list-up">
+                        <view class="title">
+                            {{item.name}}
+                            <text class="gray">{{currentTab == 1 ? '(已使用)' : ''}}{{currentTab == 2 ? '(已过期)' : ''}}</text>
+                        </view>
+                        <view class="intro">{{item.intro}}</view>
+                        <view class="deadline">使用时间：{{item.startTime}} ~ {{item.endTime}}</view>
+                    </view>
+                    <view class="shop-wrap">
+                        <view class="shop">
+                            <view class="limit">满{{item.moneyOff}}元可用</view>
+                        </view>
+                        <view class="value">
+                            <text>￥{{item.value}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+        <view class="coupon-null" wx:else>无可用优惠券</view>
     </view>
 </view>
