@@ -20,7 +20,7 @@
                 <!-- 已完成用户信息绑定时显示 -->
                 <block wx:if="{{hasUserInfo === true}}">
                     <image backgroundSize="cover" class="userinfo-avatar" src="{{userInfo.avatar}}"></image>
-                    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+                    <text class="userinfo-nickname">{{userInfo.nickname}}</text>
                     <view class="jisore">
                         <!--<image class="integral_img" src="../../static/image/user/integral.png"></image>-->
                         <!--{{score}} 积分-->
@@ -109,13 +109,13 @@
                     </button>
                 </view>
                 <!--<view bindtap="jumpTo" class="listli" data-url="../user/collection/index">-->
-                    <!--<button class="but_ui" formType="submit">-->
-                        <!--<image src="../../static/image/function/collection.png"></image>-->
-                        <!--我的收藏-->
-                        <!--<span>-->
-                            <!--<image src="../../static/image/more.png"></image>-->
-                        <!--</span>-->
-                    <!--</button>-->
+                <!--<button class="but_ui" formType="submit">-->
+                <!--<image src="../../static/image/function/collection.png"></image>-->
+                <!--我的收藏-->
+                <!--<span>-->
+                <!--<image src="../../static/image/more.png"></image>-->
+                <!--</span>-->
+                <!--</button>-->
                 <!--</view>-->
                 <view bindtap="jumpTo" class="listli" data-url="../user/coupon/index">
                     <button class="but_ui" formType="submit">

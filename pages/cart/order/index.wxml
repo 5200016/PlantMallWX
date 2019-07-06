@@ -44,7 +44,7 @@
                 <view class="con">
                     <view class="tit">{{productItem.name}}</view>
                     <view class="txt">库存：{{productItem.inventory}} 件</view>
-                    <view class="price">{{productItem.leasePrice}} ￥
+                    <view class="price">￥{{productItem.leasePrice}} / 天
                         <text>×{{productItem.number}}</text>
                     </view>
                 </view>

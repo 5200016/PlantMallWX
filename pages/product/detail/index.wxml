@@ -17,7 +17,7 @@
         <view class="title">{{info.name}}</view>
         <view class="cont">
             <text class="product-price" wx:if="{{classifyType === 0}}">￥{{info.price}}</text>
-            <text class="product-price" wx:if="{{classifyType === 1}}">￥{{info.leasePrice}}</text>
+            <text class="product-price" wx:if="{{classifyType === 1}}">￥{{info.leasePrice}} / 天</text>
             <text class="move-down">运费：包邮</text>
             <text class="move-down">已售{{info.sale}}件</text>
         </view>

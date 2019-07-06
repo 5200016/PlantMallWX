@@ -44,8 +44,8 @@
                 <view class="con">
                     <view class="tit" >{{shoppingProducts.product.name}}</view>
                     <view class="dbflex">
-                        <view class="price" wx:if="{{shoppingProducts.productType == 0}}">¥ {{shoppingProducts.product.price}}</view>
-                        <view class="price" wx:if="{{shoppingProducts.productType == 1}}">¥ {{shoppingProducts.product.leasePrice}}</view>
+                        <view class="price" wx:if="{{shoppingProducts.productType == 0}}">￥{{shoppingProducts.product.price}}</view>
+                        <view class="price" wx:if="{{shoppingProducts.productType == 1}}">￥{{shoppingProducts.product.leasePrice}} / 天</view>
                         <view class="sum_cont">
                             <image bindtap="bindMinus"
                                    data-product-id="{{shoppingProducts.id}}"

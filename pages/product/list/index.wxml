@@ -38,8 +38,8 @@
                             <view class="pro-title">{{item.name}}</view>
                             <text>已售 {{item.sale}} 件</text>
                             <view class="price-add-image">
-                                <text class="pro-price" wx:if="{{classifyType === 0}}">￥ {{item.price}}</text>
-                                <text class="pro-price" wx:if="{{classifyType === 1}}">￥ {{item.leasePrice}}</text>
+                                <text class="pro-price" wx:if="{{classifyType === 0}}">￥{{item.price}}</text>
+                                <text class="pro-price" wx:if="{{classifyType === 1}}">￥{{item.leasePrice}} / 天</text>
                                 <image catchtap="addShoppingCar"
                                        data-product-id="{{item.id}}"
                                        data-product-type="{{classifyType}}"

@@ -64,8 +64,8 @@
                                         <view class="pro_two">
                                             <view class="pro_ma">{{productItem.name}}</view>
                                             <view class="pro_doller">
-                                                <text class="piece_twoty" wx:if="{{item.classify.type == 0}}">￥ {{productItem.price}}</text>
-                                                <text class="piece_twoty" wx:if="{{item.classify.type == 1}}">￥ {{productItem.leasePrice}}</text>
+                                                <text class="piece_twoty" wx:if="{{item.classify.type == 0}}">￥{{productItem.price}}</text>
+                                                <text class="piece_twoty" wx:if="{{item.classify.type == 1}}">￥{{productItem.leasePrice}} / 天</text>
                                                 <text class="num_twoty">已售 {{productItem.sale}} 件</text>
                                             </view>
                                         </view>

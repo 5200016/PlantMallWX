@@ -1,3 +1,6 @@
+<view>
+    <loading bindchange="loadingChange" hidden="{{hidden}}">加载中...</loading>
+</view>
 <scroll-view bindscrolltolower="lower" bindscrolltoupper="" scrollY="true" style="height:{{scrollHeight}}px;">
     <view wx:for="{{taskList}}" wx:key="taskList" wx:for-item="item">
         <view class="od_kai">
@@ -25,8 +28,8 @@
                 <view class="liuyan cancel-border">
                     <text>养护日期：</text>
                     <view class="content-date">
-                        <view class="date-item" wx:for="{{item.dateArray}}" wx:key="dateArray" wx:for-item="item">
-                            {{item}}
+                        <view wx:for="{{item.dateArray}}" wx:key="dateArray" wx:for-item="day">
+                            <view class="{{day.finish ? 'is-finish' : 'un-finish'}}" bindtap="getLocalImage" data-time="{{day.time}}" data-order-id="{{item.id}}">{{day.time}}</view>
                         </view>
                     </view>
                 </view>

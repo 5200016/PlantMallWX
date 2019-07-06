@@ -37,10 +37,10 @@
                                    src="{{url}}{{orderProducts.product.image}}"></image>
                             <view class="con">
                                 <view class="tit">{{orderProducts.product.name}}</view>
-                                <view class="price" wx:if="{{item.type == 0}}">¥{{orderProducts.product.price || 0}}
+                                <view class="price" wx:if="{{item.type == 0}}">￥{{orderProducts.product.price || 0}}
                                     <text>×{{orderProducts.productNumber || 0}}</text>
                                 </view>
-                                <view class="price" wx:if="{{item.type == 1}}">¥{{orderProducts.product.leasePrice || 0}}
+                                <view class="price" wx:if="{{item.type == 1}}">￥{{orderProducts.product.leasePrice || 0}} / 天
                                     <text>×{{orderProducts.productNumber || 0}}</text>
                                 </view>
                             </view>

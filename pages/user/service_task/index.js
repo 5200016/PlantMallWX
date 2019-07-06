@@ -6,6 +6,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        hidden: false,
         pageNum: 1,
         pageSize: 5,
         totalPages: 0,
@@ -13,6 +14,63 @@ Page({
         taskList: [],
         dateArray: [],
         scrollHeight: 0
+    },
+
+    getLocalImage : function(e){
+        let that = this;
+        let time = e.currentTarget.dataset.time;
+        let orderId = e.currentTarget.dataset.orderId;
+        wx.chooseImage({
+            count:1,
+            success:function(res){
+                let filePath=res.tempFilePaths[0];
+                that.setData({
+                    hidden: false
+                });
+                wx.uploadFile({
+                    url: app.globalData.HOST + '/mall' + '/file/ordinary',
+                    filePath: filePath,
+                    name: 'file',
+                    success:function(response){
+                        let info = JSON.parse(response.data)
+                        if(info.result){
+                            that.insertMaintenance(orderId, time, info.data.url);
+                        }else {
+                            app.optionToast(response.data.msg);
+                        }
+                    }
+                })
+            },
+            fail:function(error){
+                console.error("调用本地相册文件时出错")
+                console.warn(error)
+            },
+            complete:function(){
+
+            }
+        })
+    },
+
+    insertMaintenance: function(orderId, time, picture){
+        let url = '/maintenance/time';
+        let data = {
+            orderId: orderId,
+            time: time,
+            url: picture
+        };
+        app.wxRequest('POST', url, data, (res) => {
+            if (res.result) {
+                this.upper();
+            } else {
+                this.setData({
+                    hidden: true
+                });
+                app.optionToast(res.msg);
+            }
+        }, (err) => {
+            console.log(err.data);
+
+        });
     },
 
     getTaskList: function () {
@@ -26,9 +84,10 @@ Page({
             if (res.result) {
                 let data = this.data.taskList;
                 for (let i = 0; i < res.data.content.length; i++) {
-                    let dateArray = res.data.content[i].maintenanceTime.split(',');
-                    res.data.content[i].dateArray = dateArray;
-                    data.push(res.data.content[i]);
+                    let dateArray = res.data.content[i].order.maintenanceTime.split(',');
+                    let finishArray = res.data.content[i].finish;
+                    res.data.content[i].order.dateArray = this.getDateArray(dateArray, finishArray);
+                    data.push(res.data.content[i].order);
                 }
                 this.setData({
                     hidden: true,
@@ -45,6 +104,25 @@ Page({
         });
     },
 
+    getDateArray: function(dateArray, finishArray){
+        let result = [];
+        for(let i = 0 ; i < dateArray.length ; i ++){
+            let finish = false;
+            for(let j = 0 ; j < finishArray.length ; j ++){
+                if(dateArray[i] == finishArray[j].time){
+                    finish = true;
+                }
+            }
+            let data = {
+                time: dateArray[i],
+                finish: finish
+            };
+            result.push(data);
+            finish = false;
+        }
+        return result;
+    },
+
     // 滚动事件，下滑加载页面
     lower: function () {
         let pageNum = this.data.pageNum;
@@ -59,9 +137,10 @@ Page({
         this.setData({
             pageNum: 1,
             totalPages: 0,
-            orderList: []
+            taskList: []
         });
         this.getTaskList();
+
     },
 
     /**
