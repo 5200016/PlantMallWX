@@ -108,15 +108,15 @@
                         </span>
                     </button>
                 </view>
-                <!--<view bindtap="jumpTo" class="listli" data-url="../user/collection/index">-->
-                <!--<button class="but_ui" formType="submit">-->
-                <!--<image src="../../static/image/function/collection.png"></image>-->
-                <!--我的收藏-->
-                <!--<span>-->
-                <!--<image src="../../static/image/more.png"></image>-->
-                <!--</span>-->
-                <!--</button>-->
-                <!--</view>-->
+                <view bindtap="jumpTo" class="listli" data-url="../coupon/index">
+                    <button class="but_ui" formType="submit">
+                        <image src="../../static/image/function/coupon.png"></image>
+                        领券中心
+                        <span>
+                            <image src="../../static/image/more.png"></image>
+                        </span>
+                    </button>
+                </view>
                 <view bindtap="jumpTo" class="listli" data-url="../user/coupon/index">
                     <button class="but_ui" formType="submit">
                         <image src="../../static/image/function/coupon.png"></image>

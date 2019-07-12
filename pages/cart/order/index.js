@@ -12,12 +12,15 @@ Page({
         addressInfo: {},
         productInfo: {},
         orderPayList: {},
-        payPrice: 0,
+        payPrice: 0.00,
         addressId: null,
         url: app.globalData.HOST + '/',
         animationData: {},
         showModalStatus: false,
         couponList: [],
+        couponName: '',
+        couponPrice: 0.00,
+        couponId: null,
 
         modaltitle: "",
         addrinfo: [],
@@ -129,6 +132,7 @@ Page({
             openid: wx.getStorageSync("openid"),
             userId: wx.getStorageSync("userId"),
             payPrice: this.data.payPrice,
+            leaseCouponId: this.data.couponId,
             sell: this.data.orderPayList.sell,
             lease: this.data.orderPayList.lease,
             shoppingProductIdList: this.data.orderPayList.shoppingProductIdList,
@@ -185,8 +189,10 @@ Page({
     },
 
     selectCoupon: function(e){
-        let id = e.currentTarget.dataset.id;
-
+        let that = this;
+        let id = e.currentTarget.dataset.id,
+            name = e.currentTarget.dataset.name,
+            value = e.currentTarget.dataset.value;
         let animation = wx.createAnimation({
             duration: 200,
             timingFunction: "linear",
@@ -200,9 +206,27 @@ Page({
                 showModalStatus: false
             });
         }.bind(this), 200);
+
+        this.setData({
+            couponId: id,
+            couponName: name,
+            couponPrice: value
+        })
     },
 
     setModalStatus: function (e) {
+        if(util.isEmpty(this.data.addressId)){
+            wx.showToast({
+                title: "请选择地址",
+                icon: 'none'
+            });
+            setTimeout(() => {
+                wx.hideToast()
+
+            }, 1500)
+            return;
+        }
+        let productPrice = e.currentTarget.dataset.price;
         this.setData({
             couponList: []
         });
@@ -216,6 +240,7 @@ Page({
                 for (let i = 0; i < res.data.length; i++){
                     res.data[i].coupon.startTime = util.formatTimeYMD(new Date(res.data[i].coupon.startTime));
                     res.data[i].coupon.endTime = util.formatTimeYMD(new Date(res.data[i].coupon.endTime));
+                    res.data[i].coupon.productPrice = productPrice;
                     data.push(res.data[i].coupon);
                 }
                 this.setData({
@@ -265,7 +290,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
         let orderPayList = wx.getStorageSync("orderPayList");
         let leaseTotalPrice = orderPayList.lease.totalPrice;
         let sellTotalPrice = 0;

@@ -24,6 +24,14 @@
     box-shadow: 0 0 8rpx rgba(0,0,0,0.1);
 }
 
+.list-no-use {
+    padding: 0 30rpx;
+    border-top-left-radius: 10rpx;
+    border-top-right-radius: 10rpx;
+    background: #cccccc;
+    box-shadow: 0 0 8rpx rgba(0,0,0,0.1);
+}
+
 .title {
     font-size: 30rpx;
     padding: 25rpx 0 10rpx 0;
@@ -79,9 +87,15 @@
     -webkit-box-align: stretch;
     -ms-flex-align: stretch;
     align-items: stretch;
-    background: #F8A000;
     border-bottom-right-radius: 10rpx;
     border-bottom-left-radius: 10rpx;
+}
+
+.shop-wrap-use{
+    background: #F8A000;
+}
+.shop-wrap-no-use{
+    background: #cccccc;
 }
 
 .shop {

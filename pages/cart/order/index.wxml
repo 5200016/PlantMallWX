@@ -1,3 +1,9 @@
+<wxs module="filter">
+    var numberToFix = function (value) {
+    return value.toFixed(2)
+    }
+    module.exports.numberToFix = numberToFix;
+</wxs>
 <view>
     <loading bindchange="loadingChange" hidden="{{hidden}}">加载中...</loading>
 </view>
@@ -72,9 +78,9 @@
             </view>
             <view class="clear"></view>
 
-            <view bindtap="setModalStatus" class="plea_youhui" data-status="1">
+            <view bindtap="setModalStatus" class="plea_youhui" data-status="1" data-price="{{orderPayList.lease.totalPrice}}">
                 <text>选择优惠券</text>
-                <view class="coupon">{{singleCoupon}}</view>
+                <view class="coupon">{{couponName}}</view>
                 <view class="choose_btn">
                     <image src="../../../static/image/more.png"></image>
                 </view>
@@ -89,7 +95,7 @@
             <view class="line"></view>
             <view class="groupSum">{{orderPayList.lease.number}}件商品 小计：
                 <text wx:if="{{hava_orno}}">¥{{totalPromPrice}}+{{totalPromScore}}积分</text>
-                <text wx:else>¥{{orderPayList.lease.totalPrice}}</text>
+                <text wx:else>¥{{filter.numberToFix(orderPayList.lease.totalPrice - couponPrice)}}</text>
             </view>
         </view>
 
@@ -128,13 +134,13 @@
             </view>
             <view class="clear"></view>
 
-            <view bindtap="setModalStatus" class="plea_youhui" data-status="1">
-                <text>选择优惠券</text>
-                <view class="coupon">{{singleCoupon}}</view>
-                <view class="choose_btn">
-                    <image src="../../../static/image/more.png"></image>
-                </view>
-            </view>
+            <!--<view bindtap="setModalStatus" class="plea_youhui" data-status="1">-->
+                <!--<text>选择优惠券</text>-->
+                <!--<view class="coupon">{{couponName}}</view>-->
+                <!--<view class="choose_btn">-->
+                    <!--<image src="../../../static/image/more.png"></image>-->
+                <!--</view>-->
+            <!--</view>-->
 
             <view class="liuyan">
                 <text>留言</text>
@@ -153,7 +159,8 @@
     <view class="detail_bot">
         <view class="he"> 合计：
             <text wx:if="{{hava_orno}}">¥{{totalPromPrice}}+{{totalPromScore}}积分</text>
-            <text wx:else>¥{{payPrice}}</text>
+
+            <text wx:else>¥{{filter.numberToFix(payPrice - couponPrice)}}</text>
         </view>
         <form bindsubmit="btnPay" reportSubmit="true">
             <view class="pay">
@@ -173,8 +180,8 @@
             <text bindtap="setYouhui" class="dian"></text>选择优惠券</text>
         <scroll-view scrollY style="height:500rpx;" wx:if="{{couponList.length}}">
             <view class="list-item" wx:for="{{couponList}}" wx:key="couponList">
-                <view class="list-center" bindtap="selectCoupon" data-id="{{item.id}}">
-                    <view class="list-up">
+                <view class="list-center" bindtap="selectCoupon" data-id="{{item.id}}" data-name="{{item.name}}" data-value="{{item.value}}">
+                    <view class="{{item.moneyOff < item.productPrice ? 'list-up' : 'list-no-use'}}">
                         <view class="title">
                             {{item.name}}
                             <text class="gray">{{currentTab == 1 ? '(已使用)' : ''}}{{currentTab == 2 ? '(已过期)' : ''}}</text>
@@ -182,7 +189,7 @@
                         <view class="intro">{{item.intro}}</view>
                         <view class="deadline">使用时间：{{item.startTime}} ~ {{item.endTime}}</view>
                     </view>
-                    <view class="shop-wrap">
+                    <view class="shop-wrap {{item.moneyOff < item.productPrice ? 'shop-wrap-use' : 'shop-wrap-no-use'}}">
                         <view class="shop">
                             <view class="limit">满{{item.moneyOff}}元可用</view>
                         </view>
