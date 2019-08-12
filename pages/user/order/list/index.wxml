@@ -34,8 +34,8 @@
                         <view class="cont_t" wx:for="{{item.orderProducts}}" wx:key="orderProducts"
                               wx:for-index="productIndex" wx:for-item="orderProducts">
                             <image binderror="errImg2" data-errorimg="{{index}}" data-errorimgs="{{productIndex}}"
-                                   src="{{url}}{{orderProducts.product.image}}"></image>
-                            <view class="con">
+                                   src="{{url}}{{orderProducts.product.image}}" wx:if="{{orderProducts.productStatus != 1}}"></image>
+                            <view class="con" wx:if="{{orderProducts.productStatus != 1}}">
                                 <view class="tit">{{orderProducts.product.name}}</view>
                                 <view class="price" wx:if="{{item.type == 0}}">￥{{orderProducts.product.price || 0}}
                                     <text>×{{orderProducts.productNumber || 0}}</text>
@@ -47,8 +47,9 @@
                         </view>
                     </navigator>
                     <view class="con_c">
-                        共{{item.number}}件产品，实付
-                        <text>¥{{item.price}}</text>
+                        <text wx:if="{{item.type == 0}}">共{{item.number}}件产品，实付 </text>
+                        <text wx:if="{{item.type == 1}}">共租赁{{item.number}}天，实付 </text>
+                        <text class="price">¥{{item.price}}</text>
                     </view>
                     <view class="con_b">
                         <view wx:if="{{item.status == 0}}">

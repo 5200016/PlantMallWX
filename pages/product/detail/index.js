@@ -71,10 +71,41 @@ Page({
         });
     },
 
+    checkInput: function(e){
+        let number = parseInt(e.detail.value);
+        let price = this.data.price;
+        let totalPrice = this.countTotalPrice(price, number);
+        this.setData({
+            number: number,
+            totalPrice: totalPrice ? totalPrice : 0
+        });
+    },
+
     /**
      * 购买、购物车弹窗显示
      */
     setModalStatus: function (e) {
+
+        switch (this.data.classifyType) {
+            case 0:
+                this.setData({
+                    number: 1
+                });
+                break;
+            case 1:
+                this.setData({
+                    number: 30
+                });
+                break;
+        }
+
+        let price = this.data.price,
+            number = this.data.number;
+        let totalPrice = this.countTotalPrice(price, number);
+        this.setData({
+            totalPrice: totalPrice
+        });
+
         let animation = wx.createAnimation({
             duration: 200,
             timingFunction: "linear",
@@ -131,6 +162,39 @@ Page({
     },
 
     /**
+     * 数量减
+     */
+    bindMinusLease: function () {
+        if (this.data.canSetNumber) {
+            let price = this.data.price,
+                number = this.data.number;
+            if (--number >= 30) {
+                let totalPrice = this.countTotalPrice(price, number);
+                this.setData({
+                    number: number,
+                    totalPrice: totalPrice
+                });
+            }
+        }
+    },
+
+    /**
+     * 数量加
+     */
+    bindPlusLease: function () {
+        if (this.data.canSetNumber) {
+            let price = this.data.price,
+                number = this.data.number;
+            number++;
+            let totalPrice = this.countTotalPrice(price, number);
+            this.setData({
+                number: number,
+                totalPrice: totalPrice
+            });
+        }
+    },
+
+    /**
      * 计算总价
      * @param t 价格
      * @param a 数量
@@ -169,6 +233,17 @@ Page({
 
         switch (classifyType) {
             case 0:
+                if(this.data.number < 1){
+                    wx.showToast({
+                        title: "购买数量不能小于1",
+                        icon: 'none'
+                    });
+                    setTimeout(() => {
+                        wx.hideToast()
+
+                    }, 1500)
+                    return;
+                }
                 let info = {
                     productId: this.data.info.id,
                     productInfo: this.data.info,
@@ -179,6 +254,17 @@ Page({
                 data.sell.push(info);
                 break;
             case 1:
+                if(this.data.number < 30){
+                    wx.showToast({
+                        title: "租赁天数不能小于30天",
+                        icon: 'none'
+                    });
+                    setTimeout(() => {
+                        wx.hideToast()
+
+                    }, 1500)
+                    return;
+                }
                 let product = this.data.info;
                 product.number = this.data.number;
                 let productList = {

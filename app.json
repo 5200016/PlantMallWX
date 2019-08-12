@@ -23,16 +23,15 @@
     "pages/cart/plant_log/index",
     "pages/product/comment_list/index",
     "pages/coupon/index",
-    "pages/user/coupon/index"
+    "pages/user/coupon/index",
+    "pages/cart/agreement/index"
   ],
-
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
-
   "tabBar": {
     "color": "#353535",
     "selectedColor": "#353535",
@@ -65,12 +64,10 @@
       }
     ]
   },
-
   "permission": {
     "scope.userLocation": {
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-
   "sitemapLocation": "sitemap.json"
 }

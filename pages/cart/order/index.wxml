@@ -93,9 +93,16 @@
             </view>
 
             <view class="line"></view>
-            <view class="groupSum">{{orderPayList.lease.number}}件商品 小计：
+            <view class="groupSum">小计：
                 <text wx:if="{{hava_orno}}">¥{{totalPromPrice}}+{{totalPromScore}}积分</text>
                 <text wx:else>¥{{filter.numberToFix(orderPayList.lease.totalPrice - couponPrice)}}</text>
+            </view>
+
+            <view class="agree">
+                <checkbox-group class='checkbox' bindchange="checkboxChange">
+                    <checkbox value="1" checked="{{item.checked}}" />
+                    <text bindtap='toAgreement'>我已阅读并同意此租赁合同</text>
+                </checkbox-group>
             </view>
         </view>
 
@@ -147,9 +154,9 @@
                 <input bindinput="bindKeyInput" class="txt_cont" cursorSpacing="20" data-sid="{{info.shop_id}}"
                        maxlength="300" placeholder="点击填写留言"></input>
             </view>
-
+            <!-- {{sellItem.number}}件商品 -->
             <view class="line"></view>
-            <view class="groupSum">{{sellItem.number}}件商品 小计：
+            <view class="groupSum">小计：
                 <text wx:if="{{hava_orno}}">¥{{totalPromPrice}}+{{totalPromScore}}积分</text>
                 <text wx:else>¥{{sellItem.totalPrice}}</text>
             </view>

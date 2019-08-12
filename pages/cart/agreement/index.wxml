@@ -1,0 +1,7 @@
+<view>
+    <image class='content_image' src='/static/image/content.png' mode="widthFix"/>
+    <view>
+        <button class='back' bindtap="btnBack">返回</button>
+    </view>
+</view>
+

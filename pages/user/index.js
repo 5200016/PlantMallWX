@@ -11,11 +11,11 @@ Page({
         hasPhone: false,
         bindMobile: "",
 
-        count_1: 5,
-        count_2: 10,
-        count_3: 7,
-        count_4: 1,
-        count_5: 2,
+        waitPay: 0,
+        waitSend: 0,
+        waitReceive: 0,
+        waitReview: 0,
+        waitPayOut: 0,
 
         accountUrl: "../user/account/index",
         scrollHeight: 0,
@@ -32,6 +32,7 @@ Page({
         let openid = wx.getStorageSync("openid");
         if (openid !== '' && openid !== null && openid !== undefined) {
             this.getDatabaseUserInfo();
+
         } else {
             this.setData({
                 hidden: true
@@ -78,6 +79,30 @@ Page({
                     hasPhone: phoneStatus
                 });
                 app.globalData.userInfo = res.data;
+            }
+        }, (err) => {
+            app.optionToast(err.msg);
+        })
+    },
+
+    /**
+     * 根据openid获取数据库中用户信息
+     */
+    getOrderStatisticInfo() {
+        let userId = wx.getStorageSync("userId");
+        let url = '/order/status/statistic';
+        let data = {
+            userId: userId
+        };
+        app.wxRequest('GET', url, data, (res) => {
+            if (res.result) {
+                this.setData({
+                    waitPay: res.data.waitPay,
+                    waitSend: res.data.waitSend,
+                    waitReceive: res.data.waitReceive,
+                    waitReview: res.data.waitReview,
+                    waitPayOut: res.data.waitPayOut,
+                });
             }
         }, (err) => {
             app.optionToast(err.msg);
@@ -193,7 +218,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        this.getOrderStatisticInfo();
     },
 
     /**

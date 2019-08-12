@@ -21,6 +21,7 @@ Page({
         couponName: '',
         couponPrice: 0.00,
         couponId: null,
+        checked: false,
 
         modaltitle: "",
         addrinfo: [],
@@ -112,6 +113,27 @@ Page({
     },
 
     /**
+     * 租赁合同已阅勾选操作
+     */
+    toAgreement() {
+        wx.navigateTo({
+            url: '/pages/cart/agreement/index'
+        })
+    },
+
+    checkboxChange(e) {
+        if (e.detail.value !== []){
+            this.setData({
+                checked: true
+            })
+        }else{
+            this.setData({
+                checked: false
+            })
+        }
+    },
+
+    /**
      * 订单支付
      */
     btnPay: function (){
@@ -126,6 +148,19 @@ Page({
             }, 1500)
             return;
         }
+
+        if (this.data.checked !== true) {
+            wx.showToast({
+                title: "请阅读协议并勾选",
+                icon: 'none'
+            });
+            setTimeout(() => {
+                wx.hideToast()
+
+            }, 1500)
+            return;
+        }
+
         let that = this;
         let url = '/pay';
         let data = {

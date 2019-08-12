@@ -101,15 +101,29 @@
         <view class="drawer_desc">
             <view class="commodity_attr_list">
                 <view class="drawer_num">
-                    <view class="num_txt">
+                    <view class="num_txt" wx:if="{{classifyType === 0}}">
                         购买数量
                     </view>
-                    <view class="stepper">
+                    <view class="num_txt" wx:if="{{classifyType === 1}}">
+                        租赁天数
+                    </view>
+
+                    <!-- 购买 -->
+                    <view class="stepper" wx:if="{{classifyType === 0}}">
                         <image bindtap="bindMinus" class="" src="../../../static/image/subtract.png"></image>
                         <view class="num right-content">
                             <input bindinput="checkInput" type="number" value="{{number}}"></input>
                         </view>
                         <image bindtap="bindPlus" class="drawer_image" src="../../../static/image/add.png"> ></image>
+                    </view>
+
+                    <!-- 租赁 -->
+                    <view class="stepper" wx:if="{{classifyType === 1}}">
+                        <image bindtap="bindMinusLease" class="" src="../../../static/image/subtract.png"></image>
+                        <view class="num right-content">
+                            <input bindinput="checkInput" type="number" value="{{number}}"></input>
+                        </view>
+                        <image bindtap="bindPlusLease" class="drawer_image" src="../../../static/image/add.png"> ></image>
                     </view>
                 </view>
             </view>

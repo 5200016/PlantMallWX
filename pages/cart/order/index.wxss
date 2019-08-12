@@ -566,6 +566,14 @@
     color: #ff344b;
 }
 
+.agree {
+    line-height: 80rpx;
+    font-size: 28rpx;
+    color: #ff344b;
+    padding-left: 20rpx;
+    text-decoration-line:underline;
+}
+
 .set_hui {
     width: 100%;
     position: fixed;

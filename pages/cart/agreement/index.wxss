@@ -1,0 +1,14 @@
+.content_image{
+    width: 100%;
+    margin-bottom: 92rpx;
+    margin-top: 30rpx;
+}
+
+.back {
+    background: #fff;
+    font-size: 34rpx;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+}
