@@ -199,8 +199,8 @@
 
 .cont_t .con .price {
     font-size: 28rpx;
-    color: #ff344b;
-    margin-top: 10rpx;
+    /*color: #ff344b;*/
+    margin-top: 55rpx;
 }
 
 .cont_t .con text {

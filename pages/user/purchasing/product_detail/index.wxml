@@ -1,0 +1,120 @@
+<view>
+    <loading bindchange="loadingChange" hidden="{{hidden}}">加载中...</loading>
+</view>
+<import src="../../../../utils/wxParse/wxParse.wxml"></import>
+<view class="top_bor"></view>
+<scroll-view scrollY class="pro_detail {{hiddenoperation?'pro_detail_hiddenoperation':''}}"
+             style="height:{{scrollHeight}}px">
+    <!-- 轮播图 -->
+    <swiper autoplay="{{autoplay}}" class="slide-image" duration="{{duration}}" indicatorDots="{{indicatorDots}}"
+            interval="{{interval}}">
+        <swiper-item wx:for="{{info.imageList}}" wx:key="imageList" wx:for-item="item">
+            <image binderror="slideErrImg" data-errorimg="{{index}}" mode="scaleToFill"
+                   src="{{url + item.url}}"></image>
+        </swiper-item>
+    </swiper>
+    <view class="pro_cont">
+        <view class="title">{{info.name}}</view>
+        <view class="cont">
+            <text class="product-price">￥{{info.purchasePrice | 0}}</text>
+            <text class="move-down">运费：￥{{info.purchaseFreight | 0}}</text>
+            <text class="move-down">栽种服务费：￥{{info.purchaseService | 0}}</text>
+        </view>
+    </view>
+
+    <view class="detail_cont">
+        <text class="tit">商品详情</text>
+        <view class="details">
+            <template is="wxParse" data="{{wxParseData:article.nodes}}"></template>
+        </view>
+    </view>
+</scroll-view>
+
+<!-- 底部功能栏 -->
+<view class="detail_bot">
+    <view class="cart_btn">
+        <view class="btn_center" bindtap="calling" data-phone="{{phone}}">
+            <image src="../../../../static/image/phone.png"></image>
+            <text class="icon-text">电话</text>
+        </view>
+    </view>
+    <view class="cart_btn">
+        <view class="btn_center">
+            <button class="contact-btn" open-type='contact' plain='true'>
+                <image src="../../../../static/image/service.png"></image>
+                <text class="icon-text">客服</text>
+            </button>
+        </view>
+    </view>
+    <view bindtap="{{collect?'unCollect':'collect'}}" class="cart_btn">
+        <view class="btn_center">
+            <image src="{{collect?'../../../../static/image/collect_select.png':'../../../../static/image/collect.png'}}"></image>
+            <text class="icon-text">收藏</text>
+        </view>
+    </view>
+    <!--<view bindtap="setModalStatus"-->
+    <!--class="shopping_btn"-->
+    <!--&gt;加入购物车</view>-->
+    <view bindtap="setModalStatus"
+          data-status="1"
+          class="buy_btn" wx:if="{{classifyType === 0}}">立即购买</view>
+    <view bindtap="setModalStatus"
+          data-status="1"
+          class="buy_btn" wx:if="{{classifyType === 1}}">立即租赁</view>
+</view>
+
+<view class="unshelf" wx:if="{{errorProduct}}">
+    <image src="../../../images/xiaface.png"></image>
+    <view class="">您查看的商品已下架</view>
+</view>
+<view bindtap="setModalStatus" class="drawer_screen" data-status="0" wx:if="{{showModalStatus}}"></view>
+
+<!-- 购买、购物车弹出框 -->
+<view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{showModalStatus}}">
+    <icon bindtap="setModalStatus" class="close_icon" data-status="0" size="15" type="clear"></icon>
+    <view class="drawer_attr_content">
+        <view class="text_center">
+            <image binderror="imageErrImg" class="drawer_image" src="{{url + info.image}}"></image>
+            <view class="text_cont">
+                <view class="drawer_price">¥{{totalPrice}}</view>
+                <view class="drawer_inventory">库存：{{info.inventory}} 件</view>
+            </view>
+        </view>
+        <view class="drawer_desc">
+            <view class="commodity_attr_list">
+                <view class="drawer_num">
+                    <view class="num_txt" wx:if="{{classifyType === 0}}">
+                        购买数量
+                    </view>
+                    <view class="num_txt" wx:if="{{classifyType === 1}}">
+                        租赁天数
+                    </view>
+
+                    <!-- 购买 -->
+                    <view class="stepper" wx:if="{{classifyType === 0}}">
+                        <image bindtap="bindMinus" class="" src="../../../../static/image/subtract.png"></image>
+                        <view class="num right-content">
+                            <input bindinput="checkInput" type="number" value="{{number}}"></input>
+                        </view>
+                        <image bindtap="bindPlus" class="drawer_image" src="../../../../static/image/add.png"> ></image>
+                    </view>
+
+                    <!-- 租赁 -->
+                    <view class="stepper" wx:if="{{classifyType === 1}}">
+                        <image bindtap="bindMinusLease" class="" src="../../../../static/image/subtract.png"></image>
+                        <view class="num right-content">
+                            <input bindinput="checkInput" type="number" value="{{number}}"></input>
+                        </view>
+                        <image bindtap="bindPlusLease" class="drawer_image" src="../../../../static/image/add.png"> ></image>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <form bindsubmit="confirmPay" reportSubmit="true">
+            <view class="drawer_btn">
+                <button formType="submit">确定</button>
+            </view>
+        </form>
+        >
+    </view>
+</view>

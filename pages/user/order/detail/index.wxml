@@ -26,13 +26,15 @@
             <image binderror="errImg2" data-errorimg="{{index}}" data-errorimgs="{{productIndex}}"
                    src="{{url}}{{orderProducts.product.image}}"></image>
             <view class="con">
-                <view class="tit">{{orderProducts.product.name}}</view>
-                <view class="price" wx:if="{{orderInfo.type == 0}}">￥{{orderProducts.product.price || 0}}
+                <view class="price" wx:if="{{orderInfo.type == 0}}">{{orderProducts.product.name}}
                     <text>×{{orderProducts.productNumber || 0}}</text>
                 </view>
-                <view class="price" wx:if="{{orderInfo.type == 1}}">￥{{orderProducts.product.leasePrice || 0}} / 天
-                    <text>×{{orderProducts.productNumber || 0}}</text>
-                </view>
+<!--                <view class="price" wx:if="{{orderInfo.type == 0}}">￥{{orderProducts.product.price || 0}}-->
+<!--                    <text>×{{orderProducts.productNumber || 0}}</text>-->
+<!--                </view>-->
+<!--                <view class="price" wx:if="{{orderInfo.type == 1}}">￥{{orderProducts.product.leasePrice || 0}} / 天-->
+<!--                    <text>×{{orderProducts.productNumber || 0}}</text>-->
+<!--                </view>-->
             </view>
         </view>
         <view class="detail_x">
@@ -41,9 +43,9 @@
             <text wx:if="{{orderInfo.description != null}}">买家留言：{{orderInfo.description}}</text>
         </view>
         <view class="detail_xx">
-            <view class="txt">运费
-                <text>免邮</text>
-            </view>
+<!--            <view class="txt">运费-->
+<!--                <text>免邮</text>-->
+<!--            </view>-->
             <view class="txt">总计
                 <span>¥{{orderInfo.price}}</span>
             </view>

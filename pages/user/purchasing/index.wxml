@@ -1,0 +1,157 @@
+<!--  未审核和审核不通过界面 -->
+<view class="container" wx:if="{{status == -1 || status == 2}}">
+    <view class="top_bor"></view>
+    <form bindsubmit="formSubmit">
+        <view class="address_cont">
+            <view class="cont">
+                <view class="txtl">采购商名称</view>
+                <view class="txtr">
+                    <input name="name" placeholder="请输入采购商名称" type="text"></input>
+                </view>
+            </view>
+            <view class="cont">
+                <view class="txtl">身份证正面</view>
+                <view class="card-front">
+                    <image class="preview-card" src="../../../static/image/card_plus.png" bindtap="getCardFront" wx:if="{{!cardFrontStatus}}"></image>
+                    <image class="card" src="{{url}}{{cardFront}}" bindtap="getCardFront" wx:if="{{cardFrontStatus}}"></image>
+                </view>
+            </view>
+            <view class="cont">
+                <view class="txtl">身份证反面</view>
+                <view class="card-verso">
+                    <image class="preview-card" src="../../../static/image/card_plus.png" bindtap="getCardVerso" wx:if="{{!cardVersoStatus}}"></image>
+                    <image class="card" src="{{url}}{{cardVerso}}" bindtap="getCardVerso" wx:if="{{cardVersoStatus}}"></image>
+                </view>
+            </view>
+            <view class="cont">
+                <view class="txtl">地理位置</view>
+                <view class="txtr">
+                    <textarea name="address" placeholder="请输入地理位置"></textarea>
+                </view>
+            </view>
+        </view>
+        <view class="btn_area">
+            <button class="sub_btn" formType="submit" hoverClass="other-button-hover" >提交审核</button>
+        </view>
+    </form>
+</view>
+
+<!-- 审核中界面 -->
+<view class="container" wx:if="{{status == 0}}">
+    <view class="top_bor"></view>
+    <form>
+        <view class="address_cont">
+            <view class="cont">
+                <view class="txtl">采购商名称</view>
+                <view class="txtr">
+                    <view class="purchase-name">{{name}}</view>
+                </view>
+            </view>
+            <view class="cont">
+                <view class="txtl">身份证正面</view>
+                <view class="card-front">
+                    <image class="card" src="{{url}}{{cardFrontImage}}"></image>
+                </view>
+            </view>
+            <view class="cont">
+                <view class="txtl">身份证反面</view>
+                <view class="card-verso">
+                    <image class="card" src="{{url}}{{cardVersoImage}}"></image>
+                </view>
+            </view>
+            <view class="cont">
+                <view class="txtl">地理位置</view>
+                <view class="txtr">
+                    <view class="purchase-address">{{address}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="btn_area">
+            <button class="sub_btn">审核中</button>
+        </view>
+    </form>
+</view>
+
+<!-- 审核通过界面 -->
+<view >
+    <view>
+        <loading bindchange="loadingChange" hidden="{{hidden}}">加载中...</loading>
+    </view>
+
+    <modal bindconfirm="modalConfirm" confirmText="确定" hidden="{{hiddenModal}}" noCancel="true"
+           title="{{modalTitle}}">
+    </modal>
+
+    <form reportSubmit="report-submit">
+        <view scrollY class="bgwhite" style="height:{{scrollHeight}}px;overflow:hidden;">
+            <view class="tab-nav tab-nav2 flex">
+                <view class="search-box flex-extend">
+                    <input bindinput="keyInput" placeholder="搜索"></input>
+                </view>
+                <view class="txt v-line  {{filter?'active':''}}" data-current="5">
+                    <view bindtap="filterFunction" class="{{filter?'filter-active':'filter'}}">筛选</view>
+                </view>
+            </view>
+            <view class="content clearfix">
+
+                <!-- 商品分类 -->
+                <scroll-view scrollY class="classify fl" style="height:{{scrollHeight2}}px;">
+                    <view class="cls-wrap" style="min-height:{{scrollHeight2}}px">
+                        <block wx:for="{{classifyList}}" wx:key="classifyList" wx:for-item="item">
+                            <view bindtap="clickClassify" class="cls-item flex {{item.selected?'active active2':''}}" data-id="{{item.id}}" data-type="{{item.type}}">
+                                <text class="flex-extend">{{item.name}}</text>
+                            </view>
+                        </block>
+                    </view>
+                </scroll-view>
+
+                <!-- 商品 -->
+                <scroll-view bindscrolltolower="lower" class="pro-list fl" enableBackToTop="true" scrollY="true" style="height:{{scrollHeight2}}px">
+                    <view class="venues_item flex_auto" wx:for="{{productList}}" wx:for-index="productIndex" wx:key="productList" wx:for-item="item">
+                        <navigator class="pro-item" hoverClass="none" url="product_detail/index?id={{item.id}}&classifyType={{classifyType}}" >
+                            <button class="but_ui" formType="submit">
+                                <view class="expire-wrap">
+                                    <image binderror="errImg" data-errorimg="{{index}}" mode="scaleToFill" src="{{url}}{{item.image}}"></image>
+                                </view>
+                                <view class="title">
+                                    <view class="product-name">{{item.name}}</view>
+                                    <view class="product-money">￥{{item.purchasePrice | 0}}</view>
+                                </view>
+
+                            </button>
+                        </navigator>
+                    </view>
+
+                </scroll-view>
+
+                <!-- 筛选按钮 -->
+                <view class="modal" hidden="{{filterHidden}}">
+                    <view bindtap="hideFilter" class="md-bg"></view>
+                    <view class="md-content">
+                        <view class="type" style="border-bottom:1rpx solid #e5e5e5;">
+                            <view class="type-title">商品分类</view>
+                            <picker bindchange="bindPickerChange" value="{{index}}" range="{{classifyList}}" range-key='{{"name"}}' data-id='{{classifyList[index].id}}' data-type='{{classifyList[index].type}}'>
+                                <view class="picker">
+                                    当前选择：{{classifyList[index].name}}
+                                </view>
+                            </picker>
+                        </view>
+                        <view class="hot">
+                            <view class="hot-title">热门排序</view>
+                            <view class="hot-list">
+                                <view class="item-wrap" wx:for="{{hotRank}}" wx:key="hotRank" wx:for-item="item">
+                                    <view bindtap="chooseHotRank" class="hot-item {{item.selected?'yellow':''}}" data-id="{{item.id}}" data-name="{{item.name}}">{{item.name}}</view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="btn-wrap">
+                            <view bindtap="resetFilter">重置</view>
+                            <view bindtap="submitFilter" class="btn2">确定</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </form>
+</view>
+

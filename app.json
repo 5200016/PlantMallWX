@@ -24,7 +24,10 @@
     "pages/product/comment_list/index",
     "pages/coupon/index",
     "pages/user/coupon/index",
-    "pages/cart/agreement/index"
+    "pages/cart/agreement/index",
+    "pages/user/purchasing/index",
+    "pages/user/purchasing/product_detail/index",
+    "pages/user/purchasing/product_pay/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 15,
+			"current": 17,
 			"list": [
 				{
 					"id": -1,
@@ -151,6 +151,20 @@
 					"id": -1,
 					"name": "优惠券",
 					"pathName": "pages/user/coupon/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "采购商入口",
+					"pathName": "pages/user/purchasing/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "采购商确认订单",
+					"pathName": "pages/user/purchasing/product_pay/index",
 					"scene": null
 				}
 			]

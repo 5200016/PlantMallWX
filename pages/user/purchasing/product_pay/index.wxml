@@ -1,0 +1,101 @@
+<wxs module="filter">
+    var numberToFix = function (value) {
+    return value.toFixed(2)
+    }
+    module.exports.numberToFix = numberToFix;
+</wxs>
+<view>
+    <loading bindchange="loadingChange" hidden="{{hidden}}">加载中...</loading>
+</view>
+
+<modal bindconfirm="modalConfirm" confirmText="确定" hidden="{{hiddenModal}}" noCancel="true"
+       title="{{modaltitle}}"></modal>
+
+<!-- 立即购买或立即租赁 -->
+<view wx:if="{{buyType == 'buy'}}">
+    <view class="container">
+        <view class="detail_top">
+            <view wx:if="{{haveAddress}}">
+                <navigator hoverClass="none" url="../../../user/address/list/index?act=choose">
+                    <view class="choose_address">
+                        <view class="sh_name">{{addressInfo.name}}
+                            <text>{{addressInfo.phone}}</text>
+                        </view>
+                        <view class="sh_address">{{addressInfo.area}} {{addressInfo.address}}</view>
+                    </view>
+                    <view class="choose_btn">
+                        <image src="../../../../static/image/more.png"></image>
+                    </view>
+                </navigator>
+            </view>
+            <view wx:else>
+                <navigator hoverClass="none" url="../../../user/address/list/index?act=choose&origin={{origin}}">
+                    <view class="choose_address">
+                        <span>
+                            <i>*</i>
+                            选择地址
+                        </span>
+                    </view>
+                    <view class="choose_btn">
+                        <image src="../../../../static/image/more.png"></image>
+                    </view>
+                </navigator>
+            </view>
+        </view>
+
+        <!-- 出售商品订单 -->
+        <view class="order_cont" wx:if="{{orderPayList.sell.length > 0}}" wx:for="{{orderPayList.sell}}" wx:key="sell" wx:for-item="sellItem">
+            <view class="cont_t">
+                <image binderror="imageErrImg" src="{{url}}{{sellItem.productInfo.image}}"></image>
+                <view class="con">
+                    <view class="tit">{{sellItem.productInfo.name}}</view>
+                    <view class="txt">库存：{{sellItem.productInfo.inventory}} 件</view>
+                    <view class="price">{{sellItem.productInfo.purchasePrice}} ￥
+                        <text>×{{sellItem.number}}</text>
+                    </view>
+                </view>
+                <view class="clear"></view>
+            </view>
+            <view class="clear"></view>
+
+            <view class="detail_xx">
+                <view class="txt">运费
+                    <view class="price price-right">
+                        <view class="price red">{{sellItem.productInfo.purchaseFreight}}￥</view>
+                    </view>
+                </view>
+            </view>
+
+            <view class="detail_xx">
+                <view class="txt">栽种服务费
+                    <view class="price price-right">
+                        <view class="price red">{{sellItem.productInfo.purchaseService}}￥</view>
+                    </view>
+                </view>
+            </view>
+
+            <view class="clear"></view>
+            <view class="liuyan">
+                <text>留言</text>
+                <input bindinput="bindKeyInput" class="txt_cont" cursorSpacing="20" data-sid="{{info.shop_id}}"
+                       maxlength="300" placeholder="点击填写留言"></input>
+            </view>
+            <!-- {{sellItem.number}}件商品 -->
+            <view class="line"></view>
+            <view class="groupSum">小计：
+                <text>¥{{filter.numberToFix(sellItem.totalPrice)}}</text>
+            </view>
+        </view>
+
+    </view>
+    <view class="detail_bot">
+        <view class="he"> 合计：
+            <text>¥{{filter.numberToFix(payPrice)}}</text>
+        </view>
+        <form bindsubmit="btnPay" reportSubmit="true">
+            <view class="pay">
+                <button formType="submit">支付</button>
+            </view>
+        </form>
+    </view>
+</view>
